@@ -2,38 +2,46 @@ package net.gegy1000.modcrafter.common.modrun;
 
 import net.gegy1000.modcrafter.mod.Mod;
 import net.gegy1000.modcrafter.mod.ModSaveManager;
-import net.gegy1000.modcrafter.mod.component.Component;
-import net.gegy1000.modcrafter.mod.component.ComponentDefMod;
-import net.gegy1000.modcrafter.script.Script;
-import net.gegy1000.modcrafter.script.ScriptDefPreInit;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ModRunner
 {
-    private List<Mod> mods;
+    private List<LoadedMod> loadedMods = new ArrayList<LoadedMod>();
 
     private static ModRunner instance;
 
     public void preInit()
     {
-        this.mods = ModSaveManager.discoverMods();
+        List<Mod> mods = ModSaveManager.discoverMods();
 
         for (Mod mod : mods)
         {
-            for (Component component : mod.getComponents())
-            {
-                if (component.getComponentDef() instanceof ComponentDefMod)
-                {
-                    for (Script script : component.getHatScripts())
-                    {
-                        if (script.getScriptDef() instanceof ScriptDefPreInit)
-                        {
-                            script.execute();
-                        }
-                    }
-                }
-            }
+            LoadedMod loadedMod = new LoadedMod(mod.getComponents());
+
+            loadedMods.add(loadedMod);
+        }
+
+        for (LoadedMod loadedMod : loadedMods)
+        {
+            loadedMod.preInit();
+        }
+    }
+
+    public void init()
+    {
+        for (LoadedMod loadedMod : loadedMods)
+        {
+            loadedMod.init();
+        }
+    }
+
+    public void postInit()
+    {
+        for (LoadedMod loadedMod : loadedMods)
+        {
+            loadedMod.postInit();
         }
     }
 

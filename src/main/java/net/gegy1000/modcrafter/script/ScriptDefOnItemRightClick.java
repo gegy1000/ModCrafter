@@ -1,31 +1,31 @@
 package net.gegy1000.modcrafter.script;
 
 import net.gegy1000.modcrafter.mod.component.Component;
-import net.gegy1000.modcrafter.mod.component.ComponentDefMod;
+import net.gegy1000.modcrafter.mod.component.ComponentDefItem;
 
-public class ScriptDefPreInit extends ScriptDefHat
+public class ScriptDefOnItemRightClick extends ScriptDefHat
 {
     @Override
     public String getId()
     {
-        return "pre_init";
+        return "item_right_click";
     }
 
     @Override
     public Object[] getName()
     {
-        return new Object[]{"On Pre-Game Initialization"};
+        return new Object[]{"When Right Clicked"};
     }
 
     @Override
     public int getColor()
     {
-        return 0x871212;
+        return 0x492984;
     }
 
     @Override
     public boolean isAllowedFor(Component component)
     {
-        return component.getComponentDef() instanceof ComponentDefMod;
+        return component.getComponentDef() instanceof ComponentDefItem;
     }
 }

@@ -211,7 +211,7 @@ public class GuiModCrafterProject extends GuiScreen
         float g = (colour & 0xFF00) >> 8;
         float b = (colour & 0xFF);
 
-        GL11.glColor4f(r, g, b, alpha);
+        GL11.glColor4f(r / 255.0F, g / 255.0F, b / 255.0F, alpha);
 
         mc.renderEngine.bindTexture(scriptTextures);
 

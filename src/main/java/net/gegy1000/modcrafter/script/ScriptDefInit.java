@@ -3,18 +3,18 @@ package net.gegy1000.modcrafter.script;
 import net.gegy1000.modcrafter.mod.component.Component;
 import net.gegy1000.modcrafter.mod.component.ComponentDefMod;
 
-public class ScriptDefPreInit extends ScriptDefHat
+public class ScriptDefInit extends ScriptDefHat
 {
     @Override
     public String getId()
     {
-        return "pre_init";
+        return "init";
     }
 
     @Override
     public Object[] getName()
     {
-        return new Object[]{"On Pre-Game Initialization"};
+        return new Object[]{"On Game Initialization"};
     }
 
     @Override

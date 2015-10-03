@@ -40,11 +40,15 @@ public class ModCrafter
     public void init(FMLInitializationEvent event)
     {
         proxy.init();
+
+        ModRunner.instance().init();
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
         proxy.postInit();
+
+        ModRunner.instance().postInit();
     }
 }
