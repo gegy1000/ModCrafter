@@ -183,7 +183,7 @@ public class GuiModCrafterProject extends GuiScreen
 
         if (script.getChild() != null)
         {
-            drawScript(script.getChild());
+            drawScriptAndChild(script.getChild());
         }
     }
 

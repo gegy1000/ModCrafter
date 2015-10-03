@@ -15,7 +15,7 @@ public class ScriptDefOnBlockAdded extends ScriptDefHat
     @Override
     public Object[] getName()
     {
-        return new Object[]{"When Placed"};
+        return new Object[]{"When Block Placed"};
     }
 
     @Override
