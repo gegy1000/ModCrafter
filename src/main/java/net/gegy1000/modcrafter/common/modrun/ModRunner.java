@@ -23,11 +23,11 @@ public class ModRunner
         {
             for (Sprite sprite : mod.getSprites())
             {
-                if(sprite.getSpriteDef() instanceof SpriteDefMod)
+                if (sprite.getSpriteDef() instanceof SpriteDefMod)
                 {
                     for (Script script : sprite.getHatScripts())
                     {
-                        if(script.getScriptDef() instanceof ScriptDefPreInit)
+                        if (script.getScriptDef() instanceof ScriptDefPreInit)
                         {
                             script.execute();
                         }

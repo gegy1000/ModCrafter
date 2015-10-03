@@ -2,6 +2,7 @@ package net.gegy1000.modcrafter.client.gui;
 
 import com.google.common.collect.Lists;
 import net.gegy1000.modcrafter.ModCrafterAPI;
+import net.gegy1000.modcrafter.client.gui.dialogue.GuiDialogueBox;
 import net.gegy1000.modcrafter.client.gui.element.Element;
 import net.gegy1000.modcrafter.client.gui.element.ElementSidebar;
 import net.gegy1000.modcrafter.client.gui.element.ElementSprites;
@@ -57,6 +58,7 @@ public class GuiModCrafterProject extends GuiScreen
 
     public TextBox textBox;
     private boolean container;
+    public GuiDialogueBox openDialogue;
 
     public GuiModCrafterProject(GuiModCrafter modCrafterGui, Mod loadedMod)
     {
@@ -139,6 +141,11 @@ public class GuiModCrafterProject extends GuiScreen
         if (textBox != null)
         {
             textBox.drawScreen(mouseX, mouseY, partialTicks);
+        }
+
+        if(openDialogue != null)
+        {
+            openDialogue.renderBase(mouseX, mouseY);
         }
 
         super.drawScreen(mouseX, mouseY, partialTicks);
@@ -486,6 +493,11 @@ public class GuiModCrafterProject extends GuiScreen
         for (Element element : elements)
         {
             element.mouseClicked(mouseX, mouseY, button);
+        }
+
+        if(openDialogue != null)
+        {
+            openDialogue.mouseClicked(mouseX, mouseY, button);
         }
 
         if (textBox != null)

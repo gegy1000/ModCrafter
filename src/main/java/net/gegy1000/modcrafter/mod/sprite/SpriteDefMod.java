@@ -13,4 +13,10 @@ public class SpriteDefMod extends SpriteDef
     {
         return "Mod";
     }
+
+    @Override
+    public boolean canCreateAndDestroy()
+    {
+        return false;
+    }
 }

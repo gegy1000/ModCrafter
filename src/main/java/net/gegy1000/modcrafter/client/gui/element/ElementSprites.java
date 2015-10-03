@@ -1,7 +1,13 @@
 package net.gegy1000.modcrafter.client.gui.element;
 
+import com.ibm.icu.impl.locale.AsciiUtil;
 import net.gegy1000.modcrafter.client.gui.GuiModCrafterProject;
+import net.gegy1000.modcrafter.client.gui.dialogue.GuiDialogueBox;
+import net.gegy1000.modcrafter.client.gui.dialogue.GuiDialogueCreateSprite;
 import net.gegy1000.modcrafter.mod.sprite.Sprite;
+import net.gegy1000.modcrafter.mod.sprite.SpriteDefItem;
+import net.gegy1000.modcrafter.mod.sprite.SpriteDefManager;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.lwjgl.opengl.GL11;
 
 public class ElementSprites extends Element
@@ -41,14 +47,15 @@ public class ElementSprites extends Element
         int x = 0;
         int y = 0;
         int spriteWidth = parent.spriteWidth;
-        double scale = 0.0D;
 
-        while ((spriteWidth * 4 - 1) * scale < width)
-        {
-            scale += 0.001D;
-        }
+        double scale = ((double) (width) / (double) (spriteWidth * 4 + 1));
 
         spriteWidth = (int) (scale * spriteWidth - 1);
+
+        if(mouseX > 1 && mouseX < mc.fontRenderer.getCharWidth('+') * scale && mouseY > yPosition + 2 && mouseY < yPosition + (8 * scale))
+        {
+            parent.openDialogue = new GuiDialogueCreateSprite(parent);
+        }
 
         for (Sprite sprite : parent.loadedMod.getSprites())
         {
@@ -103,6 +110,8 @@ public class ElementSprites extends Element
         GL11.glTranslated(0, (yPosition + y + 2), 0);
         GL11.glScaled(scale, scale, scale);
         GL11.glTranslated(0, -(yPosition + y + 2), 0);
+
+        parent.drawString(mc.fontRenderer, "+", 1, yPosition + 2, 0x009922);
 
         for (Sprite sprite : parent.loadedMod.getSprites())
         {

@@ -100,9 +100,12 @@ public class ElementSidebar extends Element
             {
                 ScriptDef def = entry.getValue();
 
-                parent.drawScript(def, 2, y, def.getName(), def.getDefualtDisplayName(), 1.0F, width, null);
+                if(def.isAllowedFor(parent.selectedSprite))
+                {
+                    parent.drawScript(def, 2, y, def.getName(), def.getDefualtDisplayName(), 1.0F, width, null);
 
-                y += entry.getValue().getHeight(null) + 2;
+                    y += entry.getValue().getHeight(null) + 2;
+                }
             }
 
             GL11.glPopMatrix();
