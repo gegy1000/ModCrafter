@@ -20,6 +20,7 @@ import net.gegy1000.modcrafter.script.parameter.InputParameter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
@@ -66,6 +67,26 @@ public class GuiModCrafterProject extends GuiScreen
         this.loadedMod = loadedMod;
     }
 
+    @Override
+    public void setWorldAndResolution(Minecraft mc, int width, int height)
+    {
+        super.setWorldAndResolution(mc, width, height);
+
+        if(openDialogue != null)
+        {
+            openDialogue.setWorldAndResolution(mc, width, height);
+        }
+    }
+
+    public void openDialogue(GuiDialogueBox dialogue)
+    {
+        this.openDialogue = dialogue;
+
+        ScaledResolution resolution = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
+
+        openDialogue.setWorldAndResolution(mc, resolution.getScaledWidth(), resolution.getScaledHeight());
+    }
+
     public void initGui()
     {
         int i = this.height / 4 + 48;
@@ -108,6 +129,11 @@ public class GuiModCrafterProject extends GuiScreen
         if (textBox != null)
         {
             textBox.updateScreen();
+        }
+
+        if (openDialogue != null)
+        {
+            openDialogue.updateScreen();
         }
     }
 
@@ -616,6 +642,11 @@ public class GuiModCrafterProject extends GuiScreen
         if (textBox != null)
         {
             textBox.keyTyped(c, key);
+        }
+
+        if(openDialogue != null)
+        {
+            openDialogue.keyTyped(c, key);
         }
     }
 

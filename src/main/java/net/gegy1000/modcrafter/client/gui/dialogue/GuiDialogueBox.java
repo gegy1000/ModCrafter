@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -22,11 +21,28 @@ public abstract class GuiDialogueBox
 
     protected GuiModCrafterProject project;
 
+    protected int width, height;
+
     public GuiDialogueBox(GuiModCrafterProject project)
     {
         this.project = project;
         this.project.openDialogue = this;
     }
+
+    public void keyTyped(char character, int key)
+    {
+    }
+
+    public void setWorldAndResolution(Minecraft mc, int width, int height)
+    {
+        this.mc = mc;
+        this.width = width;
+        this.height = height;
+        this.buttonList.clear();
+        this.init();
+    }
+
+    public abstract void init();
 
     /**
      * Called when the mouse is clicked.
@@ -128,4 +144,6 @@ public abstract class GuiDialogueBox
     }
 
     public abstract void render(int mouseX, int mouseY);
+
+    public void updateScreen() {}
 }

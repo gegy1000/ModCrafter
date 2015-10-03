@@ -54,7 +54,7 @@ public class ElementSprites extends Element
 
         if(mouseX > 1 && mouseX < mc.fontRenderer.getCharWidth('+') * scale && mouseY > yPosition + 2 && mouseY < yPosition + (8 * scale))
         {
-            parent.openDialogue = new GuiDialogueCreateSprite(parent);
+            parent.openDialogue(new GuiDialogueCreateSprite(parent));
         }
 
         for (Sprite sprite : parent.loadedMod.getSprites())
