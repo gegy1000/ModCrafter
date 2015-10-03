@@ -1,13 +1,13 @@
 package net.gegy1000.modcrafter.json;
 
 import net.gegy1000.modcrafter.mod.Mod;
-import net.gegy1000.modcrafter.mod.sprite.Sprite;
+import net.gegy1000.modcrafter.mod.component.Component;
 import net.gegy1000.modcrafter.script.Script;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class JsonSprite
+public class JsonComponent
 {
     public String name;
 
@@ -15,22 +15,22 @@ public class JsonSprite
 
     public String type;
 
-    public JsonSprite(Sprite sprite)
+    public JsonComponent(Component component)
     {
-        this.name = sprite.getName();
+        this.name = component.getName();
 
         this.scripts = new ArrayList<JsonScript>();
 
-        this.type = sprite.getSpriteDef().getId();
+        this.type = component.getComponentDef().getId();
 
-        for (Script script : sprite.getScripts())
+        for (Script script : component.getScripts())
         {
             scripts.add(new JsonScript(script));
         }
     }
 
-    public Sprite toSprite(Mod mod)
+    public Component toComponent(Mod mod)
     {
-        return new Sprite(mod, this);
+        return new Component(mod, this);
     }
 }

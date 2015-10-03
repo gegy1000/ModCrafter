@@ -1,9 +1,9 @@
-package net.gegy1000.modcrafter.mod.sprite;
+package net.gegy1000.modcrafter.mod.component;
 
 import com.google.common.collect.Lists;
 import net.gegy1000.modcrafter.ModCrafterAPI;
 import net.gegy1000.modcrafter.json.JsonScript;
-import net.gegy1000.modcrafter.json.JsonSprite;
+import net.gegy1000.modcrafter.json.JsonComponent;
 import net.gegy1000.modcrafter.mod.Mod;
 import net.gegy1000.modcrafter.script.Script;
 import net.gegy1000.modcrafter.script.ScriptDefHat;
@@ -12,30 +12,30 @@ import org.apache.commons.lang3.RandomStringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sprite
+public class Component
 {
     private String name;
     private final Mod mod;
 
     private List<Script> scripts = Lists.newArrayList();
 
-    private SpriteDef def;
+    private ComponentDef def;
 
-    public Sprite(SpriteDef def, Mod mod, String name)
+    public Component(ComponentDef def, Mod mod, String name)
     {
         this.mod = mod;
         this.name = name;
         this.def = def;
     }
 
-    public Sprite(Mod mod, JsonSprite jsonSprite)
+    public Component(Mod mod, JsonComponent jsonComponent)
     {
         this.mod = mod;
 
-        this.def = ModCrafterAPI.getSpriteById(jsonSprite.type);
-        this.name = jsonSprite.name;
+        this.def = ModCrafterAPI.getComponentById(jsonComponent.type);
+        this.name = jsonComponent.name;
 
-        for (JsonScript script : jsonSprite.scripts)
+        for (JsonScript script : jsonComponent.scripts)
         {
             Script newScript = script.toScript(this, null);
 
@@ -43,7 +43,7 @@ public class Sprite
         }
     }
 
-    public SpriteDef getSpriteDef()
+    public ComponentDef getComponentDef()
     {
         return def;
     }
@@ -127,9 +127,9 @@ public class Sprite
     @Override
     public boolean equals(Object obj)
     {
-        if (obj instanceof Sprite)
+        if (obj instanceof Component)
         {
-            return ((Sprite) obj).getName().equals(getName());
+            return ((Component) obj).getName().equals(getName());
         }
 
         return false;

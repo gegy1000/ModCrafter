@@ -1,6 +1,6 @@
 package net.gegy1000.modcrafter;
 
-import net.gegy1000.modcrafter.mod.sprite.SpriteDef;
+import net.gegy1000.modcrafter.mod.component.ComponentDef;
 import net.gegy1000.modcrafter.script.ScriptDef;
 
 import java.util.HashMap;
@@ -9,7 +9,7 @@ import java.util.Map;
 public class ModCrafterAPI
 {
     private static Map<String, ScriptDef> registeredScriptTypes = new HashMap<String, ScriptDef>();
-    private static Map<String, SpriteDef> registeredSpriteTypes = new HashMap<String, SpriteDef>();
+    private static Map<String, ComponentDef> registeredComponentTypes = new HashMap<String, ComponentDef>();
 
     public static void registerScriptDef(ScriptDef def)
     {
@@ -21,14 +21,14 @@ public class ModCrafterAPI
         return registeredScriptTypes.get(id);
     }
 
-    public static void registerSpriteDef(SpriteDef def)
+    public static void registerComponentDef(ComponentDef def)
     {
-        registeredSpriteTypes.put(def.getId(), def);
+        registeredComponentTypes.put(def.getId(), def);
     }
 
-    public static SpriteDef getSpriteById(String id)
+    public static ComponentDef getComponentById(String id)
     {
-        return registeredSpriteTypes.get(id);
+        return registeredComponentTypes.get(id);
     }
 
     public static Map<String, ScriptDef> getScriptDefs()

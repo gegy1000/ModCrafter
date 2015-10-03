@@ -2,8 +2,8 @@ package net.gegy1000.modcrafter.client.gui;
 
 import net.gegy1000.modcrafter.mod.Mod;
 import net.gegy1000.modcrafter.mod.ModSaveManager;
-import net.gegy1000.modcrafter.mod.sprite.Sprite;
-import net.gegy1000.modcrafter.mod.sprite.SpriteDefMod;
+import net.gegy1000.modcrafter.mod.component.Component;
+import net.gegy1000.modcrafter.mod.component.ComponentDefMod;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
@@ -76,7 +76,7 @@ public class GuiCreateMod extends GuiScreen
         else if (button.id == 1)
         {
             Mod mod = new Mod(name.getText());
-            mod.addSprite(new Sprite(new SpriteDefMod(), mod, "Mod"));
+            mod.addComponent(new Component(new ComponentDefMod(), mod, "Mod"));
 
             try
             {

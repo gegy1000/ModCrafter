@@ -145,5 +145,8 @@ public abstract class GuiDialogueBox
 
     public abstract void render(int mouseX, int mouseY);
 
-    public void updateScreen() {}
+    public void updateScreen()
+    {
+
+    }
 }

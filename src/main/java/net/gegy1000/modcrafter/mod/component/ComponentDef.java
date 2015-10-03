@@ -1,6 +1,6 @@
-package net.gegy1000.modcrafter.mod.sprite;
+package net.gegy1000.modcrafter.mod.component;
 
-public abstract class SpriteDef
+public abstract class ComponentDef
 {
     public abstract String getId();
 

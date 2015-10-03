@@ -1,11 +1,11 @@
-package net.gegy1000.modcrafter.mod.sprite;
+package net.gegy1000.modcrafter.mod.component;
 
-public class SpriteDefMod extends SpriteDef
+public class ComponentDefMod extends ComponentDef
 {
     @Override
     public String getId()
     {
-        return "sprite_mod";
+        return "component_mod";
     }
 
     @Override

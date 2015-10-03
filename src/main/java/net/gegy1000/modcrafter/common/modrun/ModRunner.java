@@ -2,8 +2,8 @@ package net.gegy1000.modcrafter.common.modrun;
 
 import net.gegy1000.modcrafter.mod.Mod;
 import net.gegy1000.modcrafter.mod.ModSaveManager;
-import net.gegy1000.modcrafter.mod.sprite.Sprite;
-import net.gegy1000.modcrafter.mod.sprite.SpriteDefMod;
+import net.gegy1000.modcrafter.mod.component.Component;
+import net.gegy1000.modcrafter.mod.component.ComponentDefMod;
 import net.gegy1000.modcrafter.script.Script;
 import net.gegy1000.modcrafter.script.ScriptDefPreInit;
 
@@ -21,11 +21,11 @@ public class ModRunner
 
         for (Mod mod : mods)
         {
-            for (Sprite sprite : mod.getSprites())
+            for (Component component : mod.getComponents())
             {
-                if (sprite.getSpriteDef() instanceof SpriteDefMod)
+                if (component.getComponentDef() instanceof ComponentDefMod)
                 {
-                    for (Script script : sprite.getHatScripts())
+                    for (Script script : component.getHatScripts())
                     {
                         if (script.getScriptDef() instanceof ScriptDefPreInit)
                         {

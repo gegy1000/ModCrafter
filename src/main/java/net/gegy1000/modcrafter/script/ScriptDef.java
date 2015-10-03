@@ -1,6 +1,6 @@
 package net.gegy1000.modcrafter.script;
 
-import net.gegy1000.modcrafter.mod.sprite.Sprite;
+import net.gegy1000.modcrafter.mod.component.Component;
 import net.gegy1000.modcrafter.script.parameter.IParameter;
 
 public abstract class ScriptDef
@@ -13,7 +13,7 @@ public abstract class ScriptDef
 
     public abstract int getColor();
 
-    public abstract boolean isAllowedFor(Sprite sprite);
+    public abstract boolean isAllowedFor(Component component);
 
     public abstract int getHeight(Script script);
 

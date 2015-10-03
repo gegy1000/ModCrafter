@@ -16,11 +16,11 @@ public class ElementTopBar extends Element
 
         super.drawScreen(mouseX, mouseY, partialTicks);
 
-        if (parent.selectedSprite != null)
+        if (parent.selectedComponent != null)
         {
-            String spriteType = parent.selectedSprite.getSpriteDef().getDisplayName();
-            String title = parent.selectedSprite == null ? "ModCrafter" : parent.selectedSprite.getName() + " - " + parent.loadedMod.getName();
-            drawScaledString(mc, spriteType, parent.width - parent.getScaledStringWidth(spriteType, 0.75F) - 1, 2, 0xFFFFFF, 0.75F);
+            String componentType = parent.selectedComponent.getComponentDef().getDisplayName();
+            String title = parent.selectedComponent == null ? "ModCrafter" : parent.selectedComponent.getName() + " - " + parent.loadedMod.getName();
+            drawScaledString(mc, componentType, parent.width - parent.getScaledStringWidth(componentType, 0.75F) - 1, 2, 0xFFFFFF, 0.75F);
 
             drawScaledString(mc, title, parent.elementScriptSidebar.width + 3, 2, 0xFFFFFF, 0.75F);
 

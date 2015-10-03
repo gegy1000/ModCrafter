@@ -1,6 +1,6 @@
 package net.gegy1000.modcrafter.json;
 
-import net.gegy1000.modcrafter.mod.sprite.Sprite;
+import net.gegy1000.modcrafter.mod.component.Component;
 import net.gegy1000.modcrafter.script.Script;
 import net.gegy1000.modcrafter.script.parameter.IParameter;
 
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class JsonScript
 {
-    public int sprite;
+    public int component;
 
     public String defId;
 
@@ -24,7 +24,7 @@ public class JsonScript
 
     public JsonScript(Script script)
     {
-        Sprite sprite = script.getSprite();
+        Component component = script.getComponent();
 
         this.defId = script.getScriptDef().getId();
 
@@ -48,8 +48,8 @@ public class JsonScript
         }
     }
 
-    public Script toScript(Sprite sprite, Script parent)
+    public Script toScript(Component component, Script parent)
     {
-        return new Script(sprite, sprite.getMod(), parent, this);
+        return new Script(component, component.getMod(), parent, this);
     }
 }

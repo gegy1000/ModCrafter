@@ -6,7 +6,7 @@ import com.google.gson.GsonBuilder;
 import net.gegy1000.modcrafter.ModCrafter;
 import net.gegy1000.modcrafter.ModCrafterAPI;
 import net.gegy1000.modcrafter.json.JsonMod;
-import net.gegy1000.modcrafter.mod.sprite.Sprite;
+import net.gegy1000.modcrafter.mod.component.Component;
 import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 
@@ -50,13 +50,13 @@ public class ModSaveManager
 
     private static void makeTestProject(Mod mod)
     {
-        mod.getSprites().clear();
+        mod.getComponents().clear();
 
         for (int i = 0; i < 12; i++)
         {
-            Sprite sprite = new Sprite(ModCrafterAPI.getSpriteById("sprite_item"), mod, "Test Sprite" + RandomStringUtils.randomAscii(5));
+            Component component = new Component(ModCrafterAPI.getComponentById("component_item"), mod, "Test Component" + RandomStringUtils.randomAscii(5));
 
-            mod.addSprite(sprite);
+            mod.addComponent(component);
         }
     }
 

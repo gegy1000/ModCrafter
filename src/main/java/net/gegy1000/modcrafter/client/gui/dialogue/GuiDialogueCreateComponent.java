@@ -2,17 +2,17 @@ package net.gegy1000.modcrafter.client.gui.dialogue;
 
 import net.gegy1000.modcrafter.client.gui.GuiModCrafterButton;
 import net.gegy1000.modcrafter.client.gui.GuiModCrafterProject;
-import net.gegy1000.modcrafter.mod.sprite.Sprite;
-import net.gegy1000.modcrafter.mod.sprite.SpriteDefManager;
+import net.gegy1000.modcrafter.mod.component.Component;
+import net.gegy1000.modcrafter.mod.component.ComponentDefManager;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.ScaledResolution;
 
-public class GuiDialogueCreateSprite extends GuiDialogueBox
+public class GuiDialogueCreateComponent extends GuiDialogueBox
 {
     private GuiTextField name;
 
-    public GuiDialogueCreateSprite(GuiModCrafterProject project)
+    public GuiDialogueCreateComponent(GuiModCrafterProject project)
     {
         super(project);
     }
@@ -25,7 +25,7 @@ public class GuiDialogueCreateSprite extends GuiDialogueBox
 
         this.name = new GuiTextField(mc.fontRenderer, width / 2 - 90, height / 2 - 20, 105, 20);
         this.name.setFocused(true);
-        this.name.setText("New Sprite");
+        this.name.setText("New Component");
     }
 
     @Override
@@ -41,7 +41,7 @@ public class GuiDialogueCreateSprite extends GuiDialogueBox
     {
         this.name.updateCursorCounter();
 
-        this.buttonList.get(0).enabled = this.name.getText().length() > 0 && !project.loadedMod.hasSpriteWithName(this.name.getText());
+        this.buttonList.get(0).enabled = this.name.getText().length() > 0 && !project.loadedMod.hasComponentWithName(this.name.getText());
     }
 
     @Override
@@ -63,7 +63,7 @@ public class GuiDialogueCreateSprite extends GuiDialogueBox
     {
         if(button.id == 0)
         {
-            project.loadedMod.addSprite(new Sprite(SpriteDefManager.item, project.loadedMod, name.getText()));
+            project.loadedMod.addComponent(new Component(ComponentDefManager.item, project.loadedMod, name.getText()));
         }
 
         closeDialogue();
@@ -74,7 +74,7 @@ public class GuiDialogueCreateSprite extends GuiDialogueBox
     {
         ScaledResolution resolution = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
 
-        project.drawCenteredString(mc.fontRenderer, "Create Sprite", resolution.getScaledWidth() / 2, resolution.getScaledHeight() / 2 - 45, 0xFFFFFF);
+        project.drawCenteredString(mc.fontRenderer, "Create Minecraft Component", resolution.getScaledWidth() / 2, resolution.getScaledHeight() / 2 - 45, 0xFFFFFF);
 
         name.drawTextBox();
     }

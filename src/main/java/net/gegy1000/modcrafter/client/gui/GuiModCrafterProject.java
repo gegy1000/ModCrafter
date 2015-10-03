@@ -5,12 +5,12 @@ import net.gegy1000.modcrafter.ModCrafterAPI;
 import net.gegy1000.modcrafter.client.gui.dialogue.GuiDialogueBox;
 import net.gegy1000.modcrafter.client.gui.element.Element;
 import net.gegy1000.modcrafter.client.gui.element.ElementSidebar;
-import net.gegy1000.modcrafter.client.gui.element.ElementSprites;
+import net.gegy1000.modcrafter.client.gui.element.ElementComponents;
 import net.gegy1000.modcrafter.client.gui.element.ElementTopBar;
 import net.gegy1000.modcrafter.color.ColorHelper;
 import net.gegy1000.modcrafter.mod.Mod;
 import net.gegy1000.modcrafter.mod.ModSaveManager;
-import net.gegy1000.modcrafter.mod.sprite.Sprite;
+import net.gegy1000.modcrafter.mod.component.Component;
 import net.gegy1000.modcrafter.script.Script;
 import net.gegy1000.modcrafter.script.ScriptDef;
 import net.gegy1000.modcrafter.script.ScriptDefContainer;
@@ -43,7 +43,7 @@ public class GuiModCrafterProject extends GuiScreen
     public Mod loadedMod;
 
     public final int defualtScriptHeight = 11;
-    public final int spriteWidth = 21;
+    public final int componentWidth = 21;
 
     public Script holdingScript;
 
@@ -51,10 +51,10 @@ public class GuiModCrafterProject extends GuiScreen
 
     public Script snapping;
 
-    public Sprite selectedSprite;
+    public Component selectedComponent;
 
     public ElementSidebar elementScriptSidebar;
-    public ElementSprites elementSprites;
+    public ElementComponents elementComponents;
     public ElementTopBar elementTopBar;
 
     public TextBox textBox;
@@ -91,7 +91,7 @@ public class GuiModCrafterProject extends GuiScreen
     {
         int i = this.height / 4 + 48;
 
-        selectedSprite = loadedMod.getSprite(0);
+        selectedComponent = loadedMod.getComponent(0);
 
         heldOffsetX = 0;
         heldOffsetY = 0;
@@ -100,7 +100,7 @@ public class GuiModCrafterProject extends GuiScreen
 
         this.elements.clear();
         this.elements.add(this.elementScriptSidebar = new ElementSidebar(this, 0, 0, elementScriptSidebar == null ? 85 : elementScriptSidebar.width, height));
-        this.elements.add(this.elementSprites = new ElementSprites(this, 0, elementSprites == null ? height - 66 : elementSprites.yPosition, elementScriptSidebar.width, elementSprites == null ? height - (height - 66) : elementSprites.height));
+        this.elements.add(this.elementComponents = new ElementComponents(this, 0, elementComponents == null ? height - 66 : elementComponents.yPosition, elementScriptSidebar.width, elementComponents == null ? height - (height - 66) : elementComponents.height));
         this.elements.add(this.elementTopBar = new ElementTopBar(this, elementScriptSidebar.width, 0, width - elementScriptSidebar.width, 10));
     }
 
@@ -156,9 +156,9 @@ public class GuiModCrafterProject extends GuiScreen
             element.drawScreen(mouseX, mouseY, partialTicks);
         }
 
-        if (selectedSprite != null)
+        if (selectedComponent != null)
         {
-            for (Script script : selectedSprite.getScripts())
+            for (Script script : selectedComponent.getScripts())
             {
                 drawScriptAndChild(script);
             }
@@ -432,7 +432,7 @@ public class GuiModCrafterProject extends GuiScreen
 
         snapping = null;
 
-        for (Script script : selectedSprite.getScriptsAndChildren())
+        for (Script script : selectedComponent.getScriptsAndChildren())
         {
             if (script != holdingScript && holdingScript.getScriptDef().canAttachTo(script) && (script.getChild() == null || script.getChild() == holdingScript))
             {
@@ -533,9 +533,9 @@ public class GuiModCrafterProject extends GuiScreen
 
         if (holdingScript == null)
         {
-            if (selectedSprite != null)
+            if (selectedComponent != null)
             {
-                for (Script script : selectedSprite.getScriptsAndChildren())
+                for (Script script : selectedComponent.getScriptsAndChildren())
                 {
                     int width = getScriptWidth(script.getDisplayName());
 
@@ -571,13 +571,13 @@ public class GuiModCrafterProject extends GuiScreen
                     {
                         ScriptDef def = entry.getValue();
 
-                        if(def.isAllowedFor(selectedSprite))
+                        if(def.isAllowedFor(selectedComponent))
                         {
                             int width = getScriptWidth(def.getDefualtDisplayName());
 
                             if (mouseX >= 2 && mouseX <= width && mouseY >= y && mouseY <= y + def.getHeight(null))
                             {
-                                holdingScript = new Script(selectedSprite, def, null);
+                                holdingScript = new Script(selectedComponent, def, null);
 
                                 heldOffsetX = 2 - mouseX - elementScriptSidebar.width;
                                 heldOffsetY = y - mouseY - elementTopBar.height;
@@ -688,7 +688,7 @@ public class GuiModCrafterProject extends GuiScreen
 
             if (holdingScript.getX() < 0)
             {
-                selectedSprite.removeScript(holdingScript);
+                selectedComponent.removeScript(holdingScript);
             }
         }
 

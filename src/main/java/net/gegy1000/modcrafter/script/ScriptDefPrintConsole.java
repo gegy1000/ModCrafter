@@ -1,6 +1,6 @@
 package net.gegy1000.modcrafter.script;
 
-import net.gegy1000.modcrafter.mod.sprite.Sprite;
+import net.gegy1000.modcrafter.mod.component.Component;
 import net.gegy1000.modcrafter.script.parameter.InputParameter;
 
 public class ScriptDefPrintConsole extends ScriptDef
@@ -30,7 +30,7 @@ public class ScriptDefPrintConsole extends ScriptDef
     }
 
     @Override
-    public boolean isAllowedFor(Sprite sprite)
+    public boolean isAllowedFor(Component component)
     {
         return true;
     }

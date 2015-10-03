@@ -1,22 +1,17 @@
 package net.gegy1000.modcrafter.client.gui.element;
 
-import com.ibm.icu.impl.locale.AsciiUtil;
 import net.gegy1000.modcrafter.client.gui.GuiModCrafterProject;
-import net.gegy1000.modcrafter.client.gui.dialogue.GuiDialogueBox;
-import net.gegy1000.modcrafter.client.gui.dialogue.GuiDialogueCreateSprite;
-import net.gegy1000.modcrafter.mod.sprite.Sprite;
-import net.gegy1000.modcrafter.mod.sprite.SpriteDefItem;
-import net.gegy1000.modcrafter.mod.sprite.SpriteDefManager;
-import org.apache.commons.lang3.RandomStringUtils;
+import net.gegy1000.modcrafter.client.gui.dialogue.GuiDialogueCreateComponent;
+import net.gegy1000.modcrafter.mod.component.Component;
 import org.lwjgl.opengl.GL11;
 
-public class ElementSprites extends Element
+public class ElementComponents extends Element
 {
     public boolean dragging;
     public int draggingStartX;
     public int draggingStartY;
 
-    public ElementSprites(GuiModCrafterProject gui, int x, int y, int width, int height)
+    public ElementComponents(GuiModCrafterProject gui, int x, int y, int width, int height)
     {
         super(gui, x, y, width, height);
     }
@@ -46,37 +41,37 @@ public class ElementSprites extends Element
 
         int x = 0;
         int y = 0;
-        int spriteWidth = parent.spriteWidth;
+        int componentWidth = parent.componentWidth;
 
-        double scale = ((double) (width) / (double) (spriteWidth * 4 + 1));
+        double scale = ((double) (width) / (double) (componentWidth * 4 + 1));
 
-        spriteWidth = (int) (scale * spriteWidth - 1);
+        componentWidth = (int) (scale * componentWidth - 1);
 
         if(mouseX > 1 && mouseX < mc.fontRenderer.getCharWidth('+') * scale && mouseY > yPosition + 2 && mouseY < yPosition + (8 * scale))
         {
-            parent.openDialogue(new GuiDialogueCreateSprite(parent));
+            parent.openDialogue(new GuiDialogueCreateComponent(parent));
         }
 
-        for (Sprite sprite : parent.loadedMod.getSprites())
+        for (Component component : parent.loadedMod.getComponents())
         {
             int drawY = yPosition + 10 + y;
 
-            if (mouseX < x + spriteWidth - scale && mouseX > x)
+            if (mouseX < x + componentWidth - scale && mouseX > x)
             {
-                if (mouseY > drawY && mouseY < drawY + spriteWidth - scale)
+                if (mouseY > drawY && mouseY < drawY + componentWidth - scale)
                 {
-                    parent.selectedSprite = sprite;
+                    parent.selectedComponent = component;
 
                     break;
                 }
             }
 
-            x += spriteWidth;
+            x += componentWidth;
 
-            if (x > spriteWidth * 3)
+            if (x > componentWidth * 3)
             {
                 x = 0;
-                y += spriteWidth;
+                y += componentWidth;
             }
         }
     }
@@ -103,8 +98,8 @@ public class ElementSprites extends Element
 
         int x = 0;
         int y = 0;
-        int spriteWidth = parent.spriteWidth;
-        double scale = ((double) (width) / (double) (spriteWidth * 4 + 1));
+        int componentWidth = parent.componentWidth;
+        double scale = ((double) (width) / (double) (componentWidth * 4 + 1));
 
         GL11.glPushMatrix();
         GL11.glTranslated(0, (yPosition + y + 2), 0);
@@ -113,11 +108,11 @@ public class ElementSprites extends Element
 
         parent.drawString(mc.fontRenderer, "+", 1, yPosition + 2, 0x009922);
 
-        for (Sprite sprite : parent.loadedMod.getSprites())
+        for (Component component : parent.loadedMod.getComponents())
         {
             mc.getTextureManager().bindTexture(parent.widgets);
 
-            if (sprite == parent.selectedSprite)
+            if (component == parent.selectedComponent)
             {
                 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             }
@@ -127,9 +122,9 @@ public class ElementSprites extends Element
             }
 
             int drawY = yPosition + y + 10;
-            parent.drawTexturedModalRect(x, drawY, 0, 0, spriteWidth - 1, spriteWidth - 1);
+            parent.drawTexturedModalRect(x, drawY, 0, 0, componentWidth - 1, componentWidth - 1);
 
-            String name = sprite.getName();
+            String name = component.getName();
 
             if (name.length() > 15)
             {
@@ -138,12 +133,12 @@ public class ElementSprites extends Element
 
             drawScaledString(mc, name, x + 1, drawY + 17, 0xFFFFFF, 0.25F);
 
-            x += spriteWidth;
+            x += componentWidth;
 
-            if (x > spriteWidth * 3)
+            if (x > componentWidth * 3)
             {
                 x = 0;
-                y += spriteWidth;
+                y += componentWidth;
             }
         }
 

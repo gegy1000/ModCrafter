@@ -1,6 +1,6 @@
 package net.gegy1000.modcrafter.script;
 
-import net.gegy1000.modcrafter.mod.sprite.Sprite;
+import net.gegy1000.modcrafter.mod.component.Component;
 
 public class ScriptDefContainerTest extends ScriptDefContainer
 {
@@ -23,7 +23,7 @@ public class ScriptDefContainerTest extends ScriptDefContainer
     }
 
     @Override
-    public boolean isAllowedFor(Sprite sprite)
+    public boolean isAllowedFor(Component component)
     {
         return true;
     }

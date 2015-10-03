@@ -51,9 +51,9 @@ public class ElementSidebar extends Element
             width = mouseX;
         }
 
-        if (width < parent.spriteWidth)
+        if (width < parent.componentWidth)
         {
-            width = parent.spriteWidth;
+            width = parent.componentWidth;
         }
     }
 
@@ -64,7 +64,7 @@ public class ElementSidebar extends Element
         drawRect(width - 1, yPosition, 1, height, 1.0F, 1.0F, 1.0F, 0.2F);
         drawRect(0, 9, width - 1, 1, 1.0F, 1.0F, 1.0F, 0.2F);
 
-        if (parent.selectedSprite != null)
+        if (parent.selectedComponent != null)
         {
             String s = "Script Selection";
             int i = (int) (parent.getScaledStringWidth(s, 0.75F));
@@ -100,7 +100,7 @@ public class ElementSidebar extends Element
             {
                 ScriptDef def = entry.getValue();
 
-                if(def.isAllowedFor(parent.selectedSprite))
+                if(def.isAllowedFor(parent.selectedComponent))
                 {
                     parent.drawScript(def, 2, y, def.getName(), def.getDefualtDisplayName(), 1.0F, width, null);
 

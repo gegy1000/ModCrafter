@@ -9,7 +9,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.gegy1000.modcrafter.common.modrun.ModRunner;
 import net.gegy1000.modcrafter.common.proxy.CommonProxy;
-import net.gegy1000.modcrafter.mod.sprite.SpriteDefMod;
+import net.gegy1000.modcrafter.mod.component.ComponentDefMod;
 import net.gegy1000.modcrafter.script.ScriptDefManager;
 
 @Mod(modid = ModCrafter.modid, name = ModCrafter.name, version = ModCrafter.version, dependencies = "required-after:llibrary@[0.1.0-1.7.10,)")
@@ -31,7 +31,7 @@ public class ModCrafter
         proxy.preInit();
 
         ScriptDefManager.init();
-        ModCrafterAPI.registerSpriteDef(new SpriteDefMod());
+        ModCrafterAPI.registerComponentDef(new ComponentDefMod());
 
         ModRunner.instance().preInit();
     }

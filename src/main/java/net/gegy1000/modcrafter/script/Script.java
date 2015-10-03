@@ -3,7 +3,7 @@ package net.gegy1000.modcrafter.script;
 import net.gegy1000.modcrafter.ModCrafterAPI;
 import net.gegy1000.modcrafter.json.JsonScript;
 import net.gegy1000.modcrafter.mod.Mod;
-import net.gegy1000.modcrafter.mod.sprite.Sprite;
+import net.gegy1000.modcrafter.mod.component.Component;
 import net.gegy1000.modcrafter.script.parameter.IParameter;
 import net.gegy1000.modcrafter.script.parameter.InputParameter;
 
@@ -17,30 +17,30 @@ public class Script
 
     private Object[] name;
 
-    private Sprite sprite;
+    private Component component;
 
     private int x;
     private int y;
 
     private Mod mod;
 
-    public Script(Sprite sprite, ScriptDef def, Script parent, boolean addToSprite)
+    public Script(Component component, ScriptDef def, Script parent, boolean addToComponent)
     {
-        this.sprite = sprite;
+        this.component = component;
         this.def = def;
         this.parent = parent;
-        this.mod = sprite.getMod();
+        this.mod = component.getMod();
         this.name = def.getName();
 
-        if (addToSprite)
+        if (addToComponent)
         {
-            this.sprite.addScript(this); // TODO add child sort of thing, but called contained, not list as that contained stores it's children in scriptder, boolean isContafiner
+            this.component.addScript(this); // TODO add child sort of thing, but called contained, not list as that contained stores it's children in scriptder, boolean isContafiner
         }
     }
 
-    public Script(Sprite sprite, ScriptDef def, Script parent)
+    public Script(Component component, ScriptDef def, Script parent)
     {
-        this(sprite, def, parent, true);
+        this(component, def, parent, true);
     }
 
     public void execute()
@@ -56,18 +56,18 @@ public class Script
         }
     }
 
-    public Script(Sprite sprite, Mod mod, Script parent, JsonScript jsonScript)
+    public Script(Component component, Mod mod, Script parent, JsonScript jsonScript)
     {
         this.def = ModCrafterAPI.getScriptById(jsonScript.defId);
         this.parent = parent;
 
         if (jsonScript.child != null)
-            this.child = new Script(sprite, mod, this, jsonScript.child);
+            this.child = new Script(component, mod, this, jsonScript.child);
 
         if (jsonScript.contained != null)
-            this.contained = new Script(sprite, mod, this, jsonScript.contained);
+            this.contained = new Script(component, mod, this, jsonScript.contained);
 
-        this.sprite = sprite;
+        this.component = component;
         this.name = def.getName();
 
         if (jsonScript.parameters != null)
@@ -132,7 +132,7 @@ public class Script
     {
         if (script1 != null && script2 != null)
         {
-            return script1.sprite.getScriptId(script1) == script2.sprite.getScriptId(script2);
+            return script1.component.getScriptId(script1) == script2.component.getScriptId(script2);
         }
 
         return false;
@@ -144,7 +144,7 @@ public class Script
 
         if (script != null)
         {
-            newScript = new Script(script.sprite, script.def, script.parent, false);
+            newScript = new Script(script.component, script.def, script.parent, false);
             newScript.x = script.x;
             newScript.y = script.y;
             newScript.contained = script.contained;
@@ -213,11 +213,11 @@ public class Script
 
         if (oldParent != null && this.parent == null)
         {
-            sprite.removeScript(this);
+            component.removeScript(this);
         }
         else if (oldParent == null && this.parent != null)
         {
-            sprite.addScript(this);
+            component.addScript(this);
         }
     }
 
@@ -263,9 +263,9 @@ public class Script
         return def;
     }
 
-    public Sprite getSprite()
+    public Component getComponent()
     {
-        return sprite;
+        return component;
     }
 
     public Object[] getName()

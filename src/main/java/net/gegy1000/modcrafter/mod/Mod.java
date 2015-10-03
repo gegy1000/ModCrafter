@@ -2,15 +2,15 @@ package net.gegy1000.modcrafter.mod;
 
 import com.google.common.collect.Lists;
 import net.gegy1000.modcrafter.json.JsonMod;
-import net.gegy1000.modcrafter.json.JsonSprite;
-import net.gegy1000.modcrafter.mod.sprite.Sprite;
+import net.gegy1000.modcrafter.json.JsonComponent;
+import net.gegy1000.modcrafter.mod.component.Component;
 
 import java.util.List;
 
 public class Mod implements Comparable<Mod>
 {
     private String name;
-    private List<Sprite> sprites = Lists.newArrayList();
+    private List<Component> components = Lists.newArrayList();
     private String fileName;
     private long lastModified;
 
@@ -27,9 +27,9 @@ public class Mod implements Comparable<Mod>
         this.fileName = fileName;
         this.lastModified = jsonMod.lastModified;
 
-        for (JsonSprite sprite : jsonMod.sprites)
+        for (JsonComponent component : jsonMod.components)
         {
-            addSprite(sprite.toSprite(this));
+            addComponent(component.toComponent(this));
         }
     }
 
@@ -43,16 +43,16 @@ public class Mod implements Comparable<Mod>
         this.name = name;
     }
 
-    public List<Sprite> getSprites()
+    public List<Component> getComponents()
     {
-        return sprites;
+        return components;
     }
 
-    public boolean addSprite(Sprite sprite)
+    public boolean addComponent(Component component)
     {
-        if (!sprites.contains(sprite))
+        if (!components.contains(component))
         {
-            sprites.add(sprite);
+            components.add(component);
 
             return true;
         }
@@ -60,9 +60,9 @@ public class Mod implements Comparable<Mod>
         return false;
     }
 
-    public Sprite getSprite(int sprite)
+    public Component getComponent(int component)
     {
-        return sprites.size() > sprite && sprite >= 0 ? sprites.get(sprite) : null;
+        return components.size() > component && component >= 0 ? components.get(component) : null;
     }
 
     public JsonMod toJson()
@@ -86,16 +86,16 @@ public class Mod implements Comparable<Mod>
         return this.lastModified < mod.lastModified ? 1 : (this.lastModified > mod.lastModified ? -1 : this.fileName.compareTo(mod.fileName));
     }
 
-    public int getSpriteId(Sprite sprite)
+    public int getComponentId(Component component)
     {
-        return sprites.indexOf(sprite);
+        return components.indexOf(component);
     }
 
-    public boolean hasSpriteWithName(String name)
+    public boolean hasComponentWithName(String name)
     {
-        for (Sprite sprite : sprites)
+        for (Component component : components)
         {
-            if(sprite.getName().equalsIgnoreCase(name))
+            if(component.getName().equalsIgnoreCase(name))
             {
                 return true;
             }
