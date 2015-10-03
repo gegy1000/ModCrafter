@@ -211,11 +211,11 @@ public class Script
             }
         }
 
-        if (oldParent != null && this.parent == null)
+        if (oldParent == null && this.parent != null)
         {
             component.removeScript(this);
         }
-        else if (oldParent == null && this.parent != null)
+        else if (oldParent != null && this.parent == null)
         {
             component.addScript(this);
         }
