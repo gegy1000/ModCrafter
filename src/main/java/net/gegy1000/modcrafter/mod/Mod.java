@@ -90,4 +90,17 @@ public class Mod implements Comparable<Mod>
     {
         return sprites.indexOf(sprite);
     }
+
+    public boolean hasSpriteWithName(String name)
+    {
+        for (Sprite sprite : sprites)
+        {
+            if(sprite.getName().equalsIgnoreCase(name))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

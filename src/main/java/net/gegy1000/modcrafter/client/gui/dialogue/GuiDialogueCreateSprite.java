@@ -7,7 +7,6 @@ import net.gegy1000.modcrafter.mod.sprite.SpriteDefManager;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.ScaledResolution;
-import org.apache.commons.lang3.RandomStringUtils;
 
 public class GuiDialogueCreateSprite extends GuiDialogueBox
 {
@@ -41,6 +40,8 @@ public class GuiDialogueCreateSprite extends GuiDialogueBox
     public void updateScreen()
     {
         this.name.updateCursorCounter();
+
+        this.buttonList.get(0).enabled = this.name.getText().length() > 0 && !project.loadedMod.hasSpriteWithName(this.name.getText());
     }
 
     @Override
@@ -55,8 +56,6 @@ public class GuiDialogueCreateSprite extends GuiDialogueBox
         {
             this.actionPerformed(this.buttonList.get(0));
         }
-
-        this.buttonList.get(0).enabled = this.name.getText().length() > 0;
     }
 
     @Override
