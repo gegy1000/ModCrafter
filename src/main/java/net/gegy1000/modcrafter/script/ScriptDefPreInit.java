@@ -1,19 +1,20 @@
 package net.gegy1000.modcrafter.script;
 
 import net.gegy1000.modcrafter.mod.sprite.Sprite;
+import net.gegy1000.modcrafter.mod.sprite.SpriteDefMod;
 
-public class ScriptDefHatTest extends ScriptDefHat
+public class ScriptDefPreInit extends ScriptDefHat
 {
     @Override
     public String getId()
     {
-        return "hat_test";
+        return "pre_init";
     }
 
     @Override
     public Object[] getName()
     {
-        return new Object[]{"Hat Test"};
+        return new Object[]{"On Pre-Game Initialization"};
     }
 
     @Override
@@ -25,6 +26,6 @@ public class ScriptDefHatTest extends ScriptDefHat
     @Override
     public boolean isAllowedFor(Sprite sprite)
     {
-        return true;
+        return sprite.getSpriteDef() instanceof SpriteDefMod;
     }
 }

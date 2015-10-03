@@ -7,6 +7,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.gegy1000.modcrafter.common.modrun.ModRunner;
 import net.gegy1000.modcrafter.common.proxy.CommonProxy;
 import net.gegy1000.modcrafter.mod.sprite.SpriteDefMod;
 import net.gegy1000.modcrafter.script.ScriptDefManager;
@@ -31,6 +32,8 @@ public class ModCrafter
 
         ScriptDefManager.init();
         ModCrafterAPI.registerSpriteDef(new SpriteDefMod());
+
+        ModRunner.instance().preInit();
     }
 
     @EventHandler

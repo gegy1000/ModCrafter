@@ -8,7 +8,7 @@ public class ScriptDefPrintConsole extends ScriptDef
     @Override
     public void execute(Script script)
     {
-        System.out.println(script.getParameter(0));
+        System.out.println(script.getParameter(0).getData());
     }
 
     @Override

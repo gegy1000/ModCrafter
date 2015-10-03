@@ -66,9 +66,10 @@ public class ModSaveManager
 
         File modsDirectory = new File(ModCrafter.proxy.getModsFile(), "modcrafter");
 
-        try
+
+        for (File mod : modsDirectory.listFiles())
         {
-            for (File mod : modsDirectory.listFiles())
+            try
             {
                 if (!mod.isDirectory() && mod.getName().endsWith(modFormat))
                 {
@@ -100,10 +101,10 @@ public class ModSaveManager
                     zipFile.close();
                 }
             }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
         }
 
         Collections.sort(mods);
