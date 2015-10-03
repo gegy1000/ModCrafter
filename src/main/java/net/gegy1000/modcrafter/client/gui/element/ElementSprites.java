@@ -2,7 +2,6 @@ package net.gegy1000.modcrafter.client.gui.element;
 
 import net.gegy1000.modcrafter.client.gui.GuiModCrafterProject;
 import net.gegy1000.modcrafter.mod.sprite.Sprite;
-
 import org.lwjgl.opengl.GL11;
 
 public class ElementSprites extends Element

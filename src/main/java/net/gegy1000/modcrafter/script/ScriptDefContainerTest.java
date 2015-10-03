@@ -13,7 +13,7 @@ public class ScriptDefContainerTest extends ScriptDefContainer
     @Override
     public Object[] getName()
     {
-        return new Object[] { "Container Test" };
+        return new Object[]{"Container Test"};
     }
 
     @Override

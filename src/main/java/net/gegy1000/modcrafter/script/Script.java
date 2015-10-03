@@ -1,8 +1,5 @@
 package net.gegy1000.modcrafter.script;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.gegy1000.modcrafter.ModCrafterAPI;
 import net.gegy1000.modcrafter.json.JsonScript;
 import net.gegy1000.modcrafter.mod.Mod;
@@ -27,7 +24,7 @@ public class Script
 
     private Mod mod;
 
-    public Script(Sprite sprite, ScriptDef def, Script parent)
+    public Script(Sprite sprite, ScriptDef def, Script parent, boolean addToSprite)
     {
         this.sprite = sprite;
         this.def = def;
@@ -35,7 +32,15 @@ public class Script
         this.mod = sprite.getMod();
         this.name = def.getName();
 
-        this.sprite.addScript(this); // TODO add child sort of thing, but called contained, not list as that contained stores it's children in scriptder, boolean isContafiner
+        if (addToSprite)
+        {
+            this.sprite.addScript(this); // TODO add child sort of thing, but called contained, not list as that contained stores it's children in scriptder, boolean isContafiner
+        }
+    }
+
+    public Script(Sprite sprite, ScriptDef def, Script parent)
+    {
+        this(sprite, def, parent, true);
     }
 
     public void execute()
@@ -102,7 +107,7 @@ public class Script
 
     public void setChild(Script child)
     {
-        Script oldChild = copy(this.child);
+        Script oldChild = this.child;
 
         this.child = child;
 
@@ -125,21 +130,21 @@ public class Script
 
     public static boolean areEqual(Script script1, Script script2)
     {
-        if(script1 != null && script2 != null)
+        if (script1 != null && script2 != null)
         {
             return script1.sprite.getScriptId(script1) == script2.sprite.getScriptId(script2);
         }
-        
+
         return false;
     }
-    
+
     public static Script copy(Script script)
     {
         Script newScript = null;
 
         if (script != null)
         {
-            newScript = new Script(script.sprite, script.def, script.parent);
+            newScript = new Script(script.sprite, script.def, script.parent, false);
             newScript.x = script.x;
             newScript.y = script.y;
             newScript.contained = script.contained;
@@ -186,7 +191,7 @@ public class Script
 
     public void setParent(Script parent)
     {
-        Script oldParent = copy(this.parent);
+        Script oldParent = this.parent;
 
         this.parent = parent;
 
@@ -204,6 +209,15 @@ public class Script
             {
                 parent.setChild(this);
             }
+        }
+
+        if (oldParent != null && this.parent == null)
+        {
+            sprite.removeScript(this);
+        }
+        else if (oldParent == null && this.parent != null)
+        {
+            sprite.addScript(this);
         }
     }
 

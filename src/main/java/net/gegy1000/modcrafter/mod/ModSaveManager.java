@@ -1,33 +1,22 @@
 package net.gegy1000.modcrafter.mod;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import com.google.common.collect.Lists;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import net.gegy1000.modcrafter.ModCrafter;
+import net.gegy1000.modcrafter.ModCrafterAPI;
+import net.gegy1000.modcrafter.json.JsonMod;
+import net.gegy1000.modcrafter.mod.sprite.Sprite;
+import org.apache.commons.compress.utils.IOUtils;
+import org.apache.commons.lang3.RandomStringUtils;
+
+import java.io.*;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
-
-import org.apache.commons.compress.utils.IOUtils;
-import org.apache.commons.lang3.RandomStringUtils;
-
-import net.gegy1000.modcrafter.ModCrafter;
-import net.gegy1000.modcrafter.ModCrafterAPI;
-import net.gegy1000.modcrafter.json.JsonMod;
-import net.gegy1000.modcrafter.mod.sprite.Sprite;
-import net.gegy1000.modcrafter.script.Script;
-import net.gegy1000.modcrafter.script.ScriptDefHatTest;
-import net.gegy1000.modcrafter.script.ScriptDefManager;
-import net.gegy1000.modcrafter.script.ScriptDefPrintConsole;
-
-import com.google.common.collect.Lists;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 public class ModSaveManager
 {

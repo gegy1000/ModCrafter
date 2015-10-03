@@ -1,12 +1,10 @@
 package net.gegy1000.modcrafter.client.gui;
 
 import net.gegy1000.modcrafter.client.gui.element.Element;
-import net.gegy1000.modcrafter.color.ColorHelper;
 import net.gegy1000.modcrafter.script.parameter.DataType;
 import net.gegy1000.modcrafter.script.parameter.InputParameter;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ChatAllowedCharacters;
-
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 

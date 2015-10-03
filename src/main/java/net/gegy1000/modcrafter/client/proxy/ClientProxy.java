@@ -1,12 +1,12 @@
 package net.gegy1000.modcrafter.client.proxy;
 
-import java.io.File;
-
 import net.gegy1000.modcrafter.client.gui.GuiModCrafterMainMenu;
 import net.gegy1000.modcrafter.common.proxy.CommonProxy;
 import net.ilexiconn.llibrary.client.gui.GuiHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
+
+import java.io.File;
 
 public class ClientProxy extends CommonProxy
 {

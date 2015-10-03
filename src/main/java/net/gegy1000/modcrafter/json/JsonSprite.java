@@ -1,14 +1,11 @@
 package net.gegy1000.modcrafter.json;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import net.gegy1000.modcrafter.mod.Mod;
 import net.gegy1000.modcrafter.mod.sprite.Sprite;
 import net.gegy1000.modcrafter.script.Script;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class JsonSprite
 {

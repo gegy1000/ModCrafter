@@ -1,19 +1,16 @@
 package net.gegy1000.modcrafter.mod.sprite;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map.Entry;
-
+import com.google.common.collect.Lists;
 import net.gegy1000.modcrafter.ModCrafterAPI;
 import net.gegy1000.modcrafter.json.JsonScript;
 import net.gegy1000.modcrafter.json.JsonSprite;
 import net.gegy1000.modcrafter.mod.Mod;
 import net.gegy1000.modcrafter.script.Script;
 import net.gegy1000.modcrafter.script.ScriptDefHat;
-
 import org.apache.commons.lang3.RandomStringUtils;
 
-import com.google.common.collect.Lists;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Sprite
 {

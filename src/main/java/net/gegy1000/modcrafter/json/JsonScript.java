@@ -1,11 +1,11 @@
 package net.gegy1000.modcrafter.json;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.gegy1000.modcrafter.mod.sprite.Sprite;
 import net.gegy1000.modcrafter.script.Script;
 import net.gegy1000.modcrafter.script.parameter.IParameter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class JsonScript
 {

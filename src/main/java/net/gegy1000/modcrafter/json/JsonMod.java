@@ -1,10 +1,10 @@
 package net.gegy1000.modcrafter.json;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.gegy1000.modcrafter.mod.Mod;
 import net.gegy1000.modcrafter.mod.sprite.Sprite;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class JsonMod
 {

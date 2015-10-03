@@ -1,14 +1,11 @@
 package net.gegy1000.modcrafter.mod;
 
-import java.util.List;
-
+import com.google.common.collect.Lists;
 import net.gegy1000.modcrafter.json.JsonMod;
 import net.gegy1000.modcrafter.json.JsonSprite;
 import net.gegy1000.modcrafter.mod.sprite.Sprite;
-import net.gegy1000.modcrafter.script.Script;
-import net.ilexiconn.llibrary.common.time.Time;
 
-import com.google.common.collect.Lists;
+import java.util.List;
 
 public class Mod implements Comparable<Mod>
 {

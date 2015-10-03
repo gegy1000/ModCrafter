@@ -1,48 +1,18 @@
 package net.gegy1000.modcrafter.client.gui;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
-
-import net.gegy1000.modcrafter.ModCrafter;
-import net.gegy1000.modcrafter.json.JsonMod;
 import net.gegy1000.modcrafter.mod.Mod;
 import net.gegy1000.modcrafter.mod.ModSaveManager;
 import net.gegy1000.modcrafter.mod.sprite.Sprite;
-import net.gegy1000.modcrafter.mod.sprite.SpriteDef;
 import net.gegy1000.modcrafter.mod.sprite.SpriteDefMod;
-import net.gegy1000.modcrafter.script.ScriptDefManager;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
-
-import org.apache.commons.compress.utils.IOUtils;
-import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
-import com.google.common.collect.Lists;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.io.IOException;
 
 public class GuiCreateMod extends GuiScreen
 {

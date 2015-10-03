@@ -1,12 +1,11 @@
 package net.gegy1000.modcrafter.client.gui.element;
 
-import java.util.Map.Entry;
-
-import org.lwjgl.opengl.GL11;
-
 import net.gegy1000.modcrafter.ModCrafterAPI;
 import net.gegy1000.modcrafter.client.gui.GuiModCrafterProject;
 import net.gegy1000.modcrafter.script.ScriptDef;
+import org.lwjgl.opengl.GL11;
+
+import java.util.Map.Entry;
 
 public class ElementSidebar extends Element
 {

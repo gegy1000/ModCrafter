@@ -1,21 +1,7 @@
 package net.gegy1000.modcrafter.client.gui;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
-
-import net.gegy1000.modcrafter.ModCrafter;
-import net.gegy1000.modcrafter.json.JsonMod;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.gegy1000.modcrafter.mod.Mod;
 import net.gegy1000.modcrafter.mod.ModSaveManager;
 import net.minecraft.client.Minecraft;
@@ -26,17 +12,13 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
-
-import org.apache.commons.compress.utils.IOUtils;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
-import com.google.common.collect.Lists;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 public class GuiModCrafter extends GuiScreen
 {
@@ -156,34 +138,54 @@ public class GuiModCrafter extends GuiScreen
         private final Minecraft mc;
         public int width;
         public int height;
-        /** The top of the slot container. Affects the overlays and scrolling. */
+        /**
+         * The top of the slot container. Affects the overlays and scrolling.
+         */
         public int top;
-        /** The bottom of the slot container. Affects the overlays and scrolling. */
+        /**
+         * The bottom of the slot container. Affects the overlays and scrolling.
+         */
         public int bottom;
         public int right;
         public int left;
-        /** The height of a slot. */
+        /**
+         * The height of a slot.
+         */
         public final int slotHeight;
-        /** The buttonID of the button used to scroll up */
+        /**
+         * The buttonID of the button used to scroll up
+         */
         private int scrollUpButtonID;
-        /** The buttonID of the button used to scroll down */
+        /**
+         * The buttonID of the button used to scroll down
+         */
         private int scrollDownButtonID;
         protected int mouseX;
         protected int mouseY;
         protected boolean field_148163_i = true;
-        /** Where the mouse was in the window when you first clicked to scroll */
+        /**
+         * Where the mouse was in the window when you first clicked to scroll
+         */
         private float initialClickY = -2.0F;
         /**
          * What to multiply the amount you moved your mouse by (used for slowing down scrolling when over the items and not on the scroll bar)
          */
         private float scrollMultiplier;
-        /** How far down this slot has been scrolled */
+        /**
+         * How far down this slot has been scrolled
+         */
         private float amountScrolled;
-        /** The element in the list that was selected */
+        /**
+         * The element in the list that was selected
+         */
         private int selectedElement = -1;
-        /** The time when this button was last clicked. */
+        /**
+         * The time when this button was last clicked.
+         */
         private long lastClicked;
-        /** Set to true if a selected element in this gui will show an outline box */
+        /**
+         * Set to true if a selected element in this gui will show an outline box
+         */
         private boolean showSelectionBox = true;
         private boolean hasListHeader;
         public int headerPadding;

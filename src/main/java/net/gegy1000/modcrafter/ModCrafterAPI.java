@@ -1,10 +1,10 @@
 package net.gegy1000.modcrafter;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import net.gegy1000.modcrafter.mod.sprite.SpriteDef;
 import net.gegy1000.modcrafter.script.ScriptDef;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ModCrafterAPI
 {

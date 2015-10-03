@@ -1,12 +1,6 @@
 package net.gegy1000.modcrafter.client.gui;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map.Entry;
-
-import javax.swing.text.StyleContext.SmallAttributeSet;
-
+import com.google.common.collect.Lists;
 import net.gegy1000.modcrafter.ModCrafterAPI;
 import net.gegy1000.modcrafter.client.gui.element.Element;
 import net.gegy1000.modcrafter.client.gui.element.ElementSidebar;
@@ -21,7 +15,6 @@ import net.gegy1000.modcrafter.script.ScriptDef;
 import net.gegy1000.modcrafter.script.ScriptDefContainer;
 import net.gegy1000.modcrafter.script.ScriptDefHat;
 import net.gegy1000.modcrafter.script.parameter.DataType;
-import net.gegy1000.modcrafter.script.parameter.IParameter;
 import net.gegy1000.modcrafter.script.parameter.InputParameter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -29,10 +22,11 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
-import com.google.common.collect.Lists;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map.Entry;
 
 public class GuiModCrafterProject extends GuiScreen
 {
