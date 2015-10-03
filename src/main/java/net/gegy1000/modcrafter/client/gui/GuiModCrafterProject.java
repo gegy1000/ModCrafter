@@ -4,8 +4,8 @@ import com.google.common.collect.Lists;
 import net.gegy1000.modcrafter.ModCrafterAPI;
 import net.gegy1000.modcrafter.client.gui.dialogue.GuiDialogueBox;
 import net.gegy1000.modcrafter.client.gui.element.Element;
-import net.gegy1000.modcrafter.client.gui.element.ElementSidebar;
 import net.gegy1000.modcrafter.client.gui.element.ElementComponents;
+import net.gegy1000.modcrafter.client.gui.element.ElementSidebar;
 import net.gegy1000.modcrafter.client.gui.element.ElementTopBar;
 import net.gegy1000.modcrafter.color.ColorHelper;
 import net.gegy1000.modcrafter.mod.Mod;
@@ -72,7 +72,7 @@ public class GuiModCrafterProject extends GuiScreen
     {
         super.setWorldAndResolution(mc, width, height);
 
-        if(openDialogue != null)
+        if (openDialogue != null)
         {
             openDialogue.setWorldAndResolution(mc, width, height);
         }
@@ -169,7 +169,7 @@ public class GuiModCrafterProject extends GuiScreen
             textBox.drawScreen(mouseX, mouseY, partialTicks);
         }
 
-        if(openDialogue != null)
+        if (openDialogue != null)
         {
             openDialogue.renderBase(mouseX, mouseY);
         }
@@ -521,7 +521,7 @@ public class GuiModCrafterProject extends GuiScreen
             element.mouseClicked(mouseX, mouseY, button);
         }
 
-        if(openDialogue != null)
+        if (openDialogue != null)
         {
             openDialogue.mouseClicked(mouseX, mouseY, button);
         }
@@ -571,7 +571,7 @@ public class GuiModCrafterProject extends GuiScreen
                     {
                         ScriptDef def = entry.getValue();
 
-                        if(def.isAllowedFor(selectedComponent))
+                        if (def.isAllowedFor(selectedComponent))
                         {
                             int width = getScriptWidth(def.getDefualtDisplayName());
 
@@ -647,7 +647,7 @@ public class GuiModCrafterProject extends GuiScreen
             textBox.keyTyped(c, key);
         }
 
-        if(openDialogue != null)
+        if (openDialogue != null)
         {
             openDialogue.keyTyped(c, key);
         }

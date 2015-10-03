@@ -1,8 +1,8 @@
 package net.gegy1000.modcrafter.mod;
 
 import com.google.common.collect.Lists;
-import net.gegy1000.modcrafter.json.JsonMod;
 import net.gegy1000.modcrafter.json.JsonComponent;
+import net.gegy1000.modcrafter.json.JsonMod;
 import net.gegy1000.modcrafter.mod.component.Component;
 
 import java.util.List;
@@ -95,7 +95,7 @@ public class Mod implements Comparable<Mod>
     {
         for (Component component : components)
         {
-            if(component.getName().equalsIgnoreCase(name))
+            if (component.getName().equalsIgnoreCase(name))
             {
                 return true;
             }

@@ -2,8 +2,8 @@ package net.gegy1000.modcrafter.mod.component;
 
 import com.google.common.collect.Lists;
 import net.gegy1000.modcrafter.ModCrafterAPI;
-import net.gegy1000.modcrafter.json.JsonScript;
 import net.gegy1000.modcrafter.json.JsonComponent;
+import net.gegy1000.modcrafter.json.JsonScript;
 import net.gegy1000.modcrafter.mod.Mod;
 import net.gegy1000.modcrafter.script.Script;
 import net.gegy1000.modcrafter.script.ScriptDefHat;

@@ -100,7 +100,7 @@ public class ElementSidebar extends Element
             {
                 ScriptDef def = entry.getValue();
 
-                if(def.isAllowedFor(parent.selectedComponent))
+                if (def.isAllowedFor(parent.selectedComponent))
                 {
                     parent.drawScript(def, 2, y, def.getName(), def.getDefualtDisplayName(), 1.0F, width, null);
 

@@ -47,7 +47,7 @@ public class ElementComponents extends Element
 
         componentWidth = (int) (scale * componentWidth - 1);
 
-        if(mouseX > 1 && mouseX < mc.fontRenderer.getCharWidth('+') * scale && mouseY > yPosition + 2 && mouseY < yPosition + (8 * scale))
+        if (mouseX > 1 && mouseX < mc.fontRenderer.getCharWidth('+') * scale && mouseY > yPosition + 2 && mouseY < yPosition + (8 * scale))
         {
             parent.openDialogue(new GuiDialogueCreateComponent(parent));
         }

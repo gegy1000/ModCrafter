@@ -1,5 +1,6 @@
 package net.gegy1000.modcrafter.client.gui.dialogue;
 
+import net.gegy1000.modcrafter.client.gui.GuiDropdown;
 import net.gegy1000.modcrafter.client.gui.GuiModCrafterButton;
 import net.gegy1000.modcrafter.client.gui.GuiModCrafterProject;
 import net.minecraft.client.Minecraft;
@@ -14,8 +15,10 @@ import java.util.List;
 public abstract class GuiDialogueBox
 {
     private GuiButton selectedButton;
+    private GuiDropdown selectedDropdown;
 
     protected List<GuiModCrafterButton> buttonList = new ArrayList<GuiModCrafterButton>();
+    protected List<GuiDropdown> dropdownList = new ArrayList<GuiDropdown>();
 
     protected Minecraft mc = Minecraft.getMinecraft();
 
@@ -39,6 +42,7 @@ public abstract class GuiDialogueBox
         this.width = width;
         this.height = height;
         this.buttonList.clear();
+        this.dropdownList.clear();
         this.init();
     }
 
@@ -60,6 +64,22 @@ public abstract class GuiDialogueBox
                     this.selectedButton = button;
                     button.func_146113_a(this.mc.getSoundHandler());
                     this.actionPerformed(button);
+
+                    return;
+                }
+            }
+
+            for (int l = 0; l < this.dropdownList.size(); ++l)
+            {
+                GuiDropdown dropdown = this.dropdownList.get(l);
+
+                if (dropdown.mousePressed(this.mc, x, y))
+                {
+                    this.selectedDropdown = dropdown;
+                    dropdown.func_146113_a(this.mc.getSoundHandler());
+                    this.actionPerformed(dropdown);
+
+                    return;
                 }
             }
         }
@@ -71,6 +91,8 @@ public abstract class GuiDialogueBox
     }
 
     public abstract void actionPerformed(GuiButton button);
+
+    public abstract void actionPerformed(GuiDropdown dropdown);
 
     /**
      * Draws a textured rectangle at the stored z-value. Args: x, y, u, v, width, height
@@ -138,6 +160,11 @@ public abstract class GuiDialogueBox
         for (k = 0; k < this.buttonList.size(); ++k)
         {
             this.buttonList.get(k).drawButton(this.mc, mouseX, mouseY);
+        }
+
+        for (k = 0; k < this.dropdownList.size(); ++k)
+        {
+            this.dropdownList.get(k).drawDropdown(this.mc, mouseX, mouseY);
         }
 
         render(mouseX, mouseY);

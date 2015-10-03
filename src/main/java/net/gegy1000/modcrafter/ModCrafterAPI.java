@@ -35,4 +35,22 @@ public class ModCrafterAPI
     {
         return registeredScriptTypes;
     }
+
+    public static Map<String, ComponentDef> getComponentDefs()
+    {
+        return registeredComponentTypes;
+    }
+
+    public static ComponentDef getComponentByDisplayName(String name)
+    {
+        for (Map.Entry<String, ComponentDef> entry : registeredComponentTypes.entrySet())
+        {
+            if (entry.getValue().getDisplayName().equalsIgnoreCase(name))
+            {
+                return entry.getValue();
+            }
+        }
+
+        return null;
+    }
 }
