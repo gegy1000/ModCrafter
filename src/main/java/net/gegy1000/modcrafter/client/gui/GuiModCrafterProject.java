@@ -571,23 +571,26 @@ public class GuiModCrafterProject extends GuiScreen
                     {
                         ScriptDef def = entry.getValue();
 
-                        int width = getScriptWidth(def.getDefualtDisplayName());
-
-                        if (mouseX >= 2 && mouseX <= width && mouseY >= y && mouseY <= y + def.getHeight(null))
+                        if(def.isAllowedFor(selectedSprite))
                         {
-                            holdingScript = new Script(selectedSprite, def, null);
+                            int width = getScriptWidth(def.getDefualtDisplayName());
 
-                            heldOffsetX = 2 - mouseX - elementScriptSidebar.width;
-                            heldOffsetY = y - mouseY - elementTopBar.height;
+                            if (mouseX >= 2 && mouseX <= width && mouseY >= y && mouseY <= y + def.getHeight(null))
+                            {
+                                holdingScript = new Script(selectedSprite, def, null);
 
-                            holdingScript.setPosition(mouseX + heldOffsetX, mouseY + heldOffsetY);
+                                heldOffsetX = 2 - mouseX - elementScriptSidebar.width;
+                                heldOffsetY = y - mouseY - elementTopBar.height;
 
-                            snapping = null;
+                                holdingScript.setPosition(mouseX + heldOffsetX, mouseY + heldOffsetY);
 
-                            break;
+                                snapping = null;
+
+                                break;
+                            }
+
+                            y += def.getHeight(null) + 2;
                         }
-
-                        y += def.getHeight(null) + 2;
                     }
                 }
 
