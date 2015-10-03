@@ -39,7 +39,7 @@ public class Sprite
         {
             Script newScript = script.toScript(this, null);
 
-            scripts.add(newScript);
+            addScript(newScript);
         }
     }
 
@@ -70,7 +70,7 @@ public class Sprite
 
     public void addScript(Script script)
     {
-        if (script != null)
+        if (script != null && script.getParent() == null)
         {
             this.scripts.add(script);
         }
