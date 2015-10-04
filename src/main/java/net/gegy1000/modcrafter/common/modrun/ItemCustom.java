@@ -3,7 +3,6 @@ package net.gegy1000.modcrafter.common.modrun;
 import net.gegy1000.modcrafter.mod.component.Component;
 import net.gegy1000.modcrafter.script.Script;
 import net.gegy1000.modcrafter.script.ScriptDefOnItemRightClick;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,7 +16,7 @@ public class ItemCustom extends Item
     {
         super();
         this.setUnlocalizedName(component.getName().toLowerCase().replaceAll(" ", "_"));
-        this.setCreativeTab(CreativeTabs.tabMisc);
+        this.setCreativeTab(((EnumCreativeTab) component.getProperty("Creative Tab")).getTab());
         this.component = component;
     }
 

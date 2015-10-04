@@ -5,7 +5,6 @@ import net.gegy1000.modcrafter.script.Script;
 import net.gegy1000.modcrafter.script.ScriptDefOnBlockAdded;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.world.World;
 
 public class BlockCustom extends Block
@@ -17,7 +16,7 @@ public class BlockCustom extends Block
         super(Material.rock);
         this.setHardness(1.0F);
         this.setResistance(1.0F);
-        this.setCreativeTab(CreativeTabs.tabBlock);
+        this.setCreativeTab(((EnumCreativeTab) component.getProperty("Creative Tab")).getTab());
         this.setBlockName(component.getName().toLowerCase().replaceAll(" ", "_"));
         this.component = component;
     }
