@@ -30,6 +30,8 @@ public class Component
         this.mod = mod;
         this.name = name;
         this.def = def;
+
+        applyDefaultProperties();
     }
 
     public Component(Mod mod, JsonComponent jsonComponent)
@@ -52,6 +54,22 @@ public class Component
             Script newScript = script.toScript(this, null);
 
             addScript(newScript);
+        }
+
+        applyDefaultProperties();
+    }
+
+    private void applyDefaultProperties()
+    {
+        Map<String, Object> defaultProperties = new HashMap<String, Object>();
+        def.applyDefaultProperties(defaultProperties);
+
+        for (Map.Entry<String, Object> entry : defaultProperties.entrySet())
+        {
+            if (!properties.containsKey(entry.getKey()))
+            {
+                properties.put(entry.getKey(), entry.getValue());
+            }
         }
     }
 

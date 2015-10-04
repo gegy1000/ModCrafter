@@ -10,6 +10,8 @@ public abstract class ComponentDef
 
     public abstract Map<String, Class> getProperties();
 
+    public abstract void applyDefaultProperties(Map<String, Object> properties);
+
     public boolean canCreateAndDestroy()
     {
         return true;

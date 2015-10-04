@@ -30,4 +30,10 @@ public class ComponentDefMod extends ComponentDef
 
         return properties;
     }
+
+    @Override
+    public void applyDefaultProperties(Map<String, Object> properties)
+    {
+
+    }
 }

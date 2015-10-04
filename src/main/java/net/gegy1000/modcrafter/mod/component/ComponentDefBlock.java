@@ -28,4 +28,10 @@ public class ComponentDefBlock extends ComponentDef
 
         return properties;
     }
+
+    @Override
+    public void applyDefaultProperties(Map<String, Object> properties)
+    {
+        properties.put("Creative Tab", EnumCreativeTab.BLOCKS);
+    }
 }
