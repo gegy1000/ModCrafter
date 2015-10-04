@@ -6,12 +6,14 @@ import net.gegy1000.modcrafter.script.Script;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class JsonComponent
 {
     public String name;
 
     public List<JsonScript> scripts;
+    public Map<String, Object> properties;
 
     public String type;
 
@@ -20,6 +22,7 @@ public class JsonComponent
         this.name = component.getName();
 
         this.scripts = new ArrayList<JsonScript>();
+        this.properties = component.getProperties();
 
         this.type = component.getComponentDef().getId();
 

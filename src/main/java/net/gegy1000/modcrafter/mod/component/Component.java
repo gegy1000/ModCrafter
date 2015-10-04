@@ -7,10 +7,10 @@ import net.gegy1000.modcrafter.json.JsonScript;
 import net.gegy1000.modcrafter.mod.Mod;
 import net.gegy1000.modcrafter.script.Script;
 import net.gegy1000.modcrafter.script.ScriptDefHat;
+import net.minecraft.creativetab.CreativeTabs;
 import org.apache.commons.lang3.RandomStringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Component
 {
@@ -20,6 +20,8 @@ public class Component
     private List<Script> scripts = Lists.newArrayList();
 
     private ComponentDef def;
+
+    private Map<String, Object> properties = new HashMap<String, Object>();
 
     public Component(ComponentDef def, Mod mod, String name)
     {
@@ -34,6 +36,12 @@ public class Component
 
         this.def = ModCrafterAPI.getComponentById(jsonComponent.type);
         this.name = jsonComponent.name;
+        this.properties = jsonComponent.properties;
+
+        if(properties == null)
+        {
+            properties = new HashMap<String, Object>();
+        }
 
         for (JsonScript script : jsonComponent.scripts)
         {
@@ -155,5 +163,20 @@ public class Component
         {
             getScriptAndChild(script.getChild(), scripts);
         }
+    }
+
+    public Object getProperty(String name)
+    {
+        return properties.get(name);
+    }
+
+    public Map<String, Object> getProperties()
+    {
+        return properties;
+    }
+
+    public void setProperty(String key, Object value)
+    {
+        properties.put(key, value);
     }
 }

@@ -1,5 +1,10 @@
 package net.gegy1000.modcrafter.mod.component;
 
+import net.gegy1000.modcrafter.common.modrun.EnumCreativeTab;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class ComponentDefBlock extends ComponentDef
 {
     @Override
@@ -12,5 +17,15 @@ public class ComponentDefBlock extends ComponentDef
     public String getDisplayName()
     {
         return "Block";
+    }
+
+    @Override
+    public Map<String, Class> getProperties()
+    {
+        Map<String, Class> properties = new HashMap<String, Class>();
+
+        properties.put("Creative Tab", EnumCreativeTab.class);
+
+        return properties;
     }
 }

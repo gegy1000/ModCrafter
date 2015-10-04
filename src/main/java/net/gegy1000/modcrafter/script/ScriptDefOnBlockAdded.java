@@ -2,7 +2,6 @@ package net.gegy1000.modcrafter.script;
 
 import net.gegy1000.modcrafter.mod.component.Component;
 import net.gegy1000.modcrafter.mod.component.ComponentDefBlock;
-import net.gegy1000.modcrafter.mod.component.ComponentDefItem;
 
 public class ScriptDefOnBlockAdded extends ScriptDefHat
 {

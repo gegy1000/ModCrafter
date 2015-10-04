@@ -9,8 +9,6 @@ import net.gegy1000.modcrafter.script.Script;
 import net.gegy1000.modcrafter.script.ScriptDefInit;
 import net.gegy1000.modcrafter.script.ScriptDefPostInit;
 import net.gegy1000.modcrafter.script.ScriptDefPreInit;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 
 import java.util.ArrayList;
 import java.util.List;

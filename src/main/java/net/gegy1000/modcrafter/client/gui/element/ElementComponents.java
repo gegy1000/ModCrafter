@@ -2,6 +2,7 @@ package net.gegy1000.modcrafter.client.gui.element;
 
 import net.gegy1000.modcrafter.client.gui.GuiModCrafterProject;
 import net.gegy1000.modcrafter.client.gui.dialogue.GuiDialogueCreateComponent;
+import net.gegy1000.modcrafter.client.gui.dialogue.GuiDialogueModifyProperties;
 import net.gegy1000.modcrafter.mod.component.Component;
 import org.lwjgl.opengl.GL11;
 
@@ -60,6 +61,11 @@ public class ElementComponents extends Element
             {
                 if (mouseY > drawY && mouseY < drawY + componentWidth - scale)
                 {
+                    if(mouseY > drawY + (2 * scale) && mouseY < drawY + (7 * scale) && mouseX > x + (13 * scale)) //TODO doesnt work at all scales
+                    {
+                        parent.openDialogue(new GuiDialogueModifyProperties(parent));
+                    }
+
                     parent.selectedComponent = component;
 
                     break;
@@ -107,10 +113,15 @@ public class ElementComponents extends Element
         GL11.glTranslated(0, -(yPosition + y + 2), 0);
 
         parent.drawString(mc.fontRenderer, "+", 1, yPosition + 2, 0x009922);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
         for (Component component : parent.loadedMod.getComponents())
         {
             mc.getTextureManager().bindTexture(parent.widgets);
+
+            int drawY = yPosition + y + 10;
+
+            parent.drawTexturedModalRect(x + 13, drawY + 2, 20, 0, 5, 5);
 
             if (component == parent.selectedComponent)
             {
@@ -121,7 +132,6 @@ public class ElementComponents extends Element
                 GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
             }
 
-            int drawY = yPosition + y + 10;
             parent.drawTexturedModalRect(x, drawY, 0, 0, componentWidth - 1, componentWidth - 1);
 
             String name = component.getName();

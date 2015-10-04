@@ -65,6 +65,11 @@ public class GuiModCrafterProject extends GuiScreen
     {
         this.modCrafterGui = modCrafterGui;
         this.loadedMod = loadedMod;
+
+        selectedComponent = loadedMod.getComponent(0);
+
+        heldOffsetX = 0;
+        heldOffsetY = 0;
     }
 
     @Override
@@ -90,11 +95,6 @@ public class GuiModCrafterProject extends GuiScreen
     public void initGui()
     {
         int i = this.height / 4 + 48;
-
-        selectedComponent = loadedMod.getComponent(0);
-
-        heldOffsetX = 0;
-        heldOffsetY = 0;
 
         this.buttonList.add(new GuiModCrafterButton(0, this.width - 80, this.height - 10 - 20, 72, 20, I18n.format("gui.done", new Object[0])));
 

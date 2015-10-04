@@ -2,6 +2,7 @@ package net.gegy1000.modcrafter.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.gegy1000.modcrafter.common.modrun.EnumCreativeTab;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;
@@ -230,17 +231,20 @@ public class GuiDropdown extends Gui
 
             if (!clickDisplayBox)
             {
-                for (int i = 0; i < dropdownItems.size(); i++)
+                if(open)
                 {
-                    int renderX = this.xPosition;
-                    int renderY = this.yPosition + (this.height - 8) / 2 + (i * this.height) + height;
-
-                    if (mouseX >= renderX && mouseY >= renderY && mouseX < renderX + this.width && mouseY < renderY + this.height)
+                    for (int i = 0; i < dropdownItems.size(); i++)
                     {
-                        this.selected = i;
-                        this.open = false;
+                        int renderX = this.xPosition;
+                        int renderY = this.yPosition + (this.height - 8) / 2 + (i * this.height) + height;
 
-                        return true;
+                        if (mouseX >= renderX && mouseY >= renderY && mouseX < renderX + this.width && mouseY < renderY + this.height)
+                        {
+                            this.selected = i;
+                            this.open = false;
+
+                            return true;
+                        }
                     }
                 }
 
@@ -282,5 +286,15 @@ public class GuiDropdown extends Gui
     public String getSelected()
     {
         return dropdownItems.get(selected);
+    }
+
+    public int getSelectedIndex()
+    {
+        return selected;
+    }
+
+    public void setSelected(int selected)
+    {
+        this.selected = selected;
     }
 }

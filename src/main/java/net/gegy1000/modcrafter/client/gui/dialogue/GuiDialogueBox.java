@@ -26,10 +26,14 @@ public abstract class GuiDialogueBox
 
     protected int width, height;
 
+    protected int dialogueWidth, dialogueHeight;
+
     public GuiDialogueBox(GuiModCrafterProject project)
     {
         this.project = project;
         this.project.openDialogue = this;
+        this.dialogueWidth = 200;
+        this.dialogueHeight = 100;
     }
 
     public void keyTyped(char character, int key)
@@ -155,7 +159,7 @@ public abstract class GuiDialogueBox
 
         ScaledResolution resolution = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
 
-        drawBoxWithOutline((resolution.getScaledWidth() / 2) - 100, (resolution.getScaledHeight() / 2) - 50, 200, 100, 1, 1.0F, 0x404040, 0x303030);
+        drawBoxWithOutline((resolution.getScaledWidth() / 2) - (dialogueWidth / 2), (resolution.getScaledHeight() / 2) - (dialogueHeight / 2), dialogueWidth, dialogueHeight, 1, 1.0F, 0x404040, 0x303030);
 
         for (k = 0; k < this.buttonList.size(); ++k)
         {
