@@ -4,6 +4,8 @@ import net.gegy1000.modcrafter.client.gui.GuiDropdown;
 import net.gegy1000.modcrafter.client.gui.GuiModCrafterButton;
 import net.gegy1000.modcrafter.client.gui.GuiModCrafterProject;
 import net.gegy1000.modcrafter.common.modrun.EnumCreativeTab;
+import net.gegy1000.modcrafter.mod.component.Component;
+import net.gegy1000.modcrafter.mod.component.ComponentDefTexture;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
 
@@ -48,7 +50,7 @@ public class GuiDialogueModifyProperties extends GuiDialogueBox
                         selections.add(tab.getTabName());
                     }
 
-                    GuiDropdown dropdown = new GuiDropdown(dropdowns.size(), width / 2 - 10, height / 2 - 92, 80, 15, selections);
+                    GuiDropdown dropdown = new GuiDropdown(dropdowns.size(), width / 2 - 10, height / 2 - 92 + (names.size() * 18), 80, 15, selections);
 
                     Object property = project.selectedComponent.getProperty(propertyType.getKey());
 
@@ -61,6 +63,41 @@ public class GuiDialogueModifyProperties extends GuiDialogueBox
 
                     names.add(propertyType.getKey());
                 }
+            }
+            else if(propertyType.getKey().equalsIgnoreCase("Texture") && propertyType.getValue() == String.class)
+            {
+                List<String> selections = new ArrayList<String>();
+
+                Object property = project.selectedComponent.getProperty(propertyType.getKey());
+
+                int selected = 0;
+
+                int i = 0;
+
+                for (Component component : project.loadedMod.getComponents())
+                {
+                    if (component.getComponentDef() instanceof ComponentDefTexture)
+                    {
+                        String name = component.getName();
+
+                        if (property instanceof String && ((String) property).equalsIgnoreCase(name))
+                        {
+                            selected = i;
+                        }
+
+                        selections.add(name);
+
+                        i++;
+                    }
+                }
+
+                GuiDropdown dropdown = new GuiDropdown(dropdowns.size(), width / 2 - 10, height / 2 - 92 + (names.size() * 18), 80, 15, selections);
+
+                dropdown.setSelected(selected);
+
+                dropdowns.add(dropdown);
+
+                names.add(propertyType.getKey());
             }
         }
 

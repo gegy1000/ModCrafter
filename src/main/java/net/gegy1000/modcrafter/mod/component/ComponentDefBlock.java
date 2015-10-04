@@ -25,6 +25,7 @@ public class ComponentDefBlock extends ComponentDef
         Map<String, Class> properties = new HashMap<String, Class>();
 
         properties.put("Creative Tab", EnumCreativeTab.class);
+        properties.put("Texture", String.class);
 
         return properties;
     }
@@ -33,5 +34,6 @@ public class ComponentDefBlock extends ComponentDef
     public void applyDefaultProperties(Map<String, Object> properties)
     {
         properties.put("Creative Tab", EnumCreativeTab.BLOCKS);
+        properties.put("Texture", "missingno");
     }
 }

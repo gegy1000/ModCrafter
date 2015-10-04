@@ -73,17 +73,22 @@ public abstract class GuiDialogueBox
                 }
             }
 
+            boolean clicked = false;
+
             for (int l = 0; l < this.dropdownList.size(); ++l)
             {
                 GuiDropdown dropdown = this.dropdownList.get(l);
 
-                if (dropdown.mousePressed(this.mc, x, y))
+                if (dropdown.mousePressed(this.mc, x, y) && !clicked)
                 {
                     this.selectedDropdown = dropdown;
+                    clicked = true;
                     dropdown.func_146113_a(this.mc.getSoundHandler());
                     this.actionPerformed(dropdown);
-
-                    return;
+                }
+                else
+                {
+                    dropdown.open = false;
                 }
             }
         }
@@ -101,7 +106,7 @@ public abstract class GuiDialogueBox
     /**
      * Draws a textured rectangle at the stored z-value. Args: x, y, u, v, width, height
      */
-    public void drawScaledRect(int x, int y, int width, int height, float scale, int colour)
+    public void drawScaledRect(int x, int y, int width, int height, float scale, int r, int g, int b)
     {
         GL11.glPushMatrix();
 
@@ -112,11 +117,7 @@ public abstract class GuiDialogueBox
 
         GL11.glDisable(GL11.GL_TEXTURE_2D);
 
-        float red = (float) (colour >> 16 & 255) / 255.0F;
-        float green = (float) (colour >> 8 & 255) / 255.0F;
-        float blue = (float) (colour & 255) / 255.0F;
-
-        GL11.glColor3f(red, green, blue);
+        GL11.glColor3f(r / 255.0F, g / 255.0F, b / 255.0F);
 
         float f = 1.0F / (float) width;
         float f1 = 1.0F / (float) height;
@@ -133,6 +134,14 @@ public abstract class GuiDialogueBox
         GL11.glEnable(GL11.GL_TEXTURE_2D);
 
         GL11.glPopMatrix();
+    }
+
+    /**
+     * Draws a textured rectangle at the stored z-value. Args: x, y, u, v, width, height
+     */
+    public void drawScaledRect(int x, int y, int width, int height, float scale, int colour)
+    {
+        drawScaledRect(x, y, width, height, scale, colour >> 16 & 255, colour >> 8 & 255, colour & 255);
     }
 
     public void drawBoxOutline(int x, int y, int sizeX, int sizeY, int borderSize, float scale, int colour)
@@ -166,9 +175,25 @@ public abstract class GuiDialogueBox
             this.buttonList.get(k).drawButton(this.mc, mouseX, mouseY);
         }
 
+        GuiDropdown open = null;
+
         for (k = 0; k < this.dropdownList.size(); ++k)
         {
-            this.dropdownList.get(k).drawDropdown(this.mc, mouseX, mouseY);
+            GuiDropdown dropdown = this.dropdownList.get(k);
+
+            if (!dropdown.open)
+            {
+                dropdown.drawDropdown(this.mc, mouseX, mouseY);
+            }
+            else
+            {
+                open = dropdown;
+            }
+        }
+
+        if (open != null)
+        {
+            open.drawDropdown(mc, mouseX, mouseY);
         }
 
         render(mouseX, mouseY);

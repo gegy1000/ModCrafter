@@ -61,8 +61,6 @@ public class GuiDropdown extends Gui
 
     public GuiDropdown(int id, int x, int y, int width, int height, List<String> dropdownItems)
     {
-        this.width = 200;
-        this.height = 20;
         this.enabled = true;
         this.visible = true;
         this.id = id;
@@ -125,30 +123,37 @@ public class GuiDropdown extends Gui
                 l = 16777120;
             }
 
-            this.drawCenteredString(fontrenderer, this.dropdownItems.get(selected), this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2 + 1, l);
-
-            if (open)
+            if (this.dropdownItems.size() > 0)
             {
-                int y = height;
+                this.drawCenteredString(fontrenderer, this.dropdownItems.get(selected), this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2 + 1, l);
 
-                for (String item : dropdownItems)
+                if (open)
                 {
-                    int renderX = this.xPosition;
-                    int renderY = this.yPosition + y;
+                    int y = height;
 
-                    if (mouseX >= renderX && mouseY >= renderY && mouseX < renderX + this.width && mouseY < renderY + this.height)
+                    for (String item : dropdownItems)
                     {
-                        drawBoxWithOutline(renderX, renderY, this.width, this.height, 1, 1.0F, 0x505050, 0x303030);
-                    }
-                    else
-                    {
-                        drawBoxWithOutline(renderX, renderY, this.width, this.height, 1, 1.0F, 0x606060, 0x404040);
-                    }
+                        int renderX = this.xPosition;
+                        int renderY = this.yPosition + y;
 
-                    drawString(fontrenderer, item, renderX + 3, renderY + height / 2 - 3, 0xFFFFFF);
+                        if (mouseX >= renderX && mouseY >= renderY && mouseX < renderX + this.width && mouseY < renderY + this.height)
+                        {
+                            drawBoxWithOutline(renderX, renderY, this.width, this.height, 1, 1.0F, 0x505050, 0x303030);
+                        }
+                        else
+                        {
+                            drawBoxWithOutline(renderX, renderY, this.width, this.height, 1, 1.0F, 0x606060, 0x404040);
+                        }
 
-                    y += height;
+                        drawString(fontrenderer, item, renderX + 3, renderY + height / 2 - 3, 0xFFFFFF);
+
+                        y += height;
+                    }
                 }
+            }
+            else
+            {
+                this.drawCenteredString(fontrenderer, "- - -", this.xPosition + this.width / 2, this.yPosition + (this.height - 8) / 2 + 1, l);
             }
         }
     }
@@ -224,37 +229,34 @@ public class GuiDropdown extends Gui
      */
     public boolean mousePressed(Minecraft mc, int mouseX, int mouseY)
     {
-        if (this.enabled && this.visible)
+        boolean clickDisplayBox = mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
+
+        if (!clickDisplayBox)
         {
-            boolean clickDisplayBox = mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height;
-
-            if (!clickDisplayBox)
+            if (open)
             {
-                if (open)
+                for (int i = 0; i < dropdownItems.size(); i++)
                 {
-                    for (int i = 0; i < dropdownItems.size(); i++)
+                    int renderX = this.xPosition;
+                    int renderY = this.yPosition + (this.height - 8) / 2 + (i * this.height) + height;
+
+                    if (mouseX >= renderX && mouseY >= renderY && mouseX < renderX + this.width && mouseY < renderY + this.height)
                     {
-                        int renderX = this.xPosition;
-                        int renderY = this.yPosition + (this.height - 8) / 2 + (i * this.height) + height;
+                        this.selected = i;
+                        this.open = false;
 
-                        if (mouseX >= renderX && mouseY >= renderY && mouseX < renderX + this.width && mouseY < renderY + this.height)
-                        {
-                            this.selected = i;
-                            this.open = false;
-
-                            return true;
-                        }
+                        return true;
                     }
                 }
-
-                this.open = false;
             }
-            else
-            {
-                this.open = !open;
 
-                return true;
-            }
+            this.open = false;
+        }
+        else
+        {
+            this.open = !open;
+
+            return true;
         }
 
         return false;
