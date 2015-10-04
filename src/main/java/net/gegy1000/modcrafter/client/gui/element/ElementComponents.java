@@ -61,7 +61,7 @@ public class ElementComponents extends Element
             {
                 if (mouseY > drawY && mouseY < drawY + componentWidth - scale)
                 {
-                    if(mouseY > drawY + (2 * scale) && mouseY < drawY + (7 * scale) && mouseX > x + (13 * scale)) //TODO doesnt work at all scales
+                    if (mouseY > drawY + (2 * scale) && mouseY < drawY + (7 * scale) && mouseX > x + (13 * scale)) //TODO doesnt work at all scales
                     {
                         parent.openDialogue(new GuiDialogueModifyProperties(parent));
                     }

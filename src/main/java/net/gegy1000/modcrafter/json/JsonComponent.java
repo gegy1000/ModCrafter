@@ -1,5 +1,6 @@
 package net.gegy1000.modcrafter.json;
 
+import net.gegy1000.modcrafter.common.modrun.EnumCreativeTab;
 import net.gegy1000.modcrafter.mod.Mod;
 import net.gegy1000.modcrafter.mod.component.Component;
 import net.gegy1000.modcrafter.script.Script;
@@ -13,7 +14,7 @@ public class JsonComponent
     public String name;
 
     public List<JsonScript> scripts;
-    public Map<String, Object> properties;
+    public List<JsonProperty> properties;
 
     public String type;
 
@@ -22,7 +23,12 @@ public class JsonComponent
         this.name = component.getName();
 
         this.scripts = new ArrayList<JsonScript>();
-        this.properties = component.getProperties();
+        this.properties = new ArrayList<JsonProperty>();
+
+        for (Map.Entry<String, Object> entry : component.getProperties().entrySet())
+        {
+            properties.add(new JsonProperty(entry.getKey(), entry.getValue()));
+        }
 
         this.type = component.getComponentDef().getId();
 
@@ -35,5 +41,41 @@ public class JsonComponent
     public Component toComponent(Mod mod)
     {
         return new Component(mod, this);
+    }
+
+    public class JsonProperty
+    {
+        public String key;
+        public String value;
+
+        public JsonProperty(String key, Object object)
+        {
+            this.key = key;
+
+            if (object instanceof String)
+            {
+                this.value = "string:" + object;
+            }
+            else if (object instanceof EnumCreativeTab)
+            {
+                this.value = "tab:" + ((EnumCreativeTab) object).ordinal();
+            }
+        }
+
+        public Object getObject()
+        {
+            Object object = null;
+
+            if (value.startsWith("string:"))
+            {
+                object = value.split("string:")[1];
+            }
+            else if (value.startsWith("tab:"))
+            {
+                object = EnumCreativeTab.values()[Integer.parseInt(value.split("tab:")[1])];
+            }
+
+            return object;
+        }
     }
 }

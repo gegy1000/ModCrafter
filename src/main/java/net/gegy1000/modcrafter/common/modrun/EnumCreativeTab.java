@@ -29,7 +29,7 @@ public enum EnumCreativeTab
     {
         for (EnumCreativeTab tab : values())
         {
-            if(tab.getTab().equals(property))
+            if (tab.getTab().equals(property))
             {
                 return tab;
             }

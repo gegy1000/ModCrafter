@@ -6,7 +6,6 @@ import net.gegy1000.modcrafter.client.gui.GuiModCrafterProject;
 import net.gegy1000.modcrafter.common.modrun.EnumCreativeTab;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
-import net.minecraft.creativetab.CreativeTabs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,13 +37,13 @@ public class GuiDialogueModifyProperties extends GuiDialogueBox
 
         for (Map.Entry<String, Class> propertyType : propertyTypes.entrySet())
         {
-            if(propertyType.getValue().isEnum())
+            if (propertyType.getValue().isEnum())
             {
-                if(propertyType.getValue() == EnumCreativeTab.class) //Don't have this hardcoded in future
+                if (propertyType.getValue() == EnumCreativeTab.class) //Don't have this hardcoded in future
                 {
                     List<String> selections = new ArrayList<String>();
 
-                    for(EnumCreativeTab tab : EnumCreativeTab.values())
+                    for (EnumCreativeTab tab : EnumCreativeTab.values())
                     {
                         selections.add(tab.getTabName());
                     }
@@ -53,9 +52,9 @@ public class GuiDialogueModifyProperties extends GuiDialogueBox
 
                     Object property = project.selectedComponent.getProperty(propertyType.getKey());
 
-                    if(property instanceof CreativeTabs)
+                    if (property instanceof EnumCreativeTab)
                     {
-                        dropdown.setSelected(EnumCreativeTab.byTab((CreativeTabs) property).ordinal());
+                        dropdown.setSelected(((EnumCreativeTab) property).ordinal());
                     }
 
                     dropdowns.add(dropdown);
@@ -129,15 +128,14 @@ public class GuiDialogueModifyProperties extends GuiDialogueBox
             {
                 if (propertyType.getValue().isEnum())
                 {
-                    if (propertyType.getValue() == EnumCreativeTab.class) //Don't have this hardcoded in future
+                    if (propertyType.getValue() == EnumCreativeTab.class) //TODO Don't have this hardcoded in future
                     {
-                        project.selectedComponent.setProperty(propertyType.getKey(), EnumCreativeTab.values()[dropdowns.get(dropdownIndex).getSelectedIndex()].getTab());
+                        project.selectedComponent.setProperty(propertyType.getKey(), EnumCreativeTab.values()[dropdowns.get(dropdownIndex).getSelectedIndex()]);
 
                         dropdownIndex++;
                     }
                 }
             }
-//            project.loadedMod.addComponent(new Component(ModCrafterAPI.getComponentByDisplayName(dropdown.getSelected()), project.loadedMod, name.getText()));
         }
 
         closeDialogue();

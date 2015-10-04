@@ -2,7 +2,6 @@ package net.gegy1000.modcrafter.client.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.gegy1000.modcrafter.common.modrun.EnumCreativeTab;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;
@@ -231,7 +230,7 @@ public class GuiDropdown extends Gui
 
             if (!clickDisplayBox)
             {
-                if(open)
+                if (open)
                 {
                     for (int i = 0; i < dropdownItems.size(); i++)
                     {
