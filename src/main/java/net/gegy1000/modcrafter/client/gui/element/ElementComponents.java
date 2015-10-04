@@ -3,7 +3,9 @@ package net.gegy1000.modcrafter.client.gui.element;
 import net.gegy1000.modcrafter.client.gui.GuiModCrafterProject;
 import net.gegy1000.modcrafter.client.gui.dialogue.GuiDialogueCreateComponent;
 import net.gegy1000.modcrafter.client.gui.dialogue.GuiDialogueModifyProperties;
+import net.gegy1000.modcrafter.client.gui.dialogue.GuiDialogueModifyTexture;
 import net.gegy1000.modcrafter.mod.component.Component;
+import net.gegy1000.modcrafter.mod.component.ComponentDefTexture;
 import org.lwjgl.opengl.GL11;
 
 public class ElementComponents extends Element
@@ -65,7 +67,14 @@ public class ElementComponents extends Element
 
                     if (mouseY > drawY + (2 * scale) && mouseY < drawY + (7 * scale) && mouseX > x + (13 * scale)) //TODO doesnt work at all scales
                     {
-                        parent.openDialogue(new GuiDialogueModifyProperties(parent));
+                        if (parent.selectedComponent.getComponentDef() instanceof ComponentDefTexture)
+                        {
+                            parent.openDialogue(new GuiDialogueModifyTexture(parent));
+                        }
+                        else
+                        {
+                            parent.openDialogue(new GuiDialogueModifyProperties(parent));
+                        }
                     }
 
                     break;

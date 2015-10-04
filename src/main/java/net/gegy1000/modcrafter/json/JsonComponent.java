@@ -60,19 +60,30 @@ public class JsonComponent
             {
                 this.value = "tab:" + ((EnumCreativeTab) object).ordinal();
             }
+            else if(object instanceof Integer)
+            {
+                this.value = "i:" + (int) object;
+            }
         }
 
         public Object getObject()
         {
             Object object = null;
 
-            if (value.startsWith("string:"))
+            if (value != null)
             {
-                object = value.split("string:")[1];
-            }
-            else if (value.startsWith("tab:"))
-            {
-                object = EnumCreativeTab.values()[Integer.parseInt(value.split("tab:")[1])];
+                if (value.startsWith("string:"))
+                {
+                    object = value.split("string:")[1];
+                }
+                else if (value.startsWith("tab:"))
+                {
+                    object = EnumCreativeTab.values()[Integer.parseInt(value.split("tab:")[1])];
+                }
+                else if(value.startsWith("i:"))
+                {
+                    object = Integer.parseInt(value.split("i:")[1]);
+                }
             }
 
             return object;
