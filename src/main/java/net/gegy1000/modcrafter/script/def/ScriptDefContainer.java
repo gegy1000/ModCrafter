@@ -1,4 +1,6 @@
-package net.gegy1000.modcrafter.script;
+package net.gegy1000.modcrafter.script.def;
+
+import net.gegy1000.modcrafter.script.Script;
 
 public abstract class ScriptDefContainer extends ScriptDef
 {

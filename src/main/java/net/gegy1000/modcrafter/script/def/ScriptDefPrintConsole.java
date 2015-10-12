@@ -1,12 +1,13 @@
-package net.gegy1000.modcrafter.script;
+package net.gegy1000.modcrafter.script.def;
 
 import net.gegy1000.modcrafter.mod.component.Component;
+import net.gegy1000.modcrafter.script.Script;
 import net.gegy1000.modcrafter.script.parameter.InputParameter;
 
 public class ScriptDefPrintConsole extends ScriptDef
 {
     @Override
-    public void execute(Script script)
+    public void execute(Script script, Object[] contextVariables)
     {
         System.out.println(script.getParameter(0).getData());
     }
@@ -39,5 +40,11 @@ public class ScriptDefPrintConsole extends ScriptDef
     public int getHeight(Script script)
     {
         return 11;
+    }
+
+    @Override
+    public Class[] getRequiredContextVariables()
+    {
+        return new Class[0];
     }
 }

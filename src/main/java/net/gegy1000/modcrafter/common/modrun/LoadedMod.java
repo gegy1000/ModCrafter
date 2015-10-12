@@ -6,9 +6,9 @@ import net.gegy1000.modcrafter.mod.component.ComponentDefBlock;
 import net.gegy1000.modcrafter.mod.component.ComponentDefItem;
 import net.gegy1000.modcrafter.mod.component.ComponentDefMod;
 import net.gegy1000.modcrafter.script.Script;
-import net.gegy1000.modcrafter.script.ScriptDefInit;
-import net.gegy1000.modcrafter.script.ScriptDefPostInit;
-import net.gegy1000.modcrafter.script.ScriptDefPreInit;
+import net.gegy1000.modcrafter.script.def.hat.ScriptDefInit;
+import net.gegy1000.modcrafter.script.def.hat.ScriptDefPostInit;
+import net.gegy1000.modcrafter.script.def.hat.ScriptDefPreInit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +54,7 @@ public class LoadedMod
                 {
                     if (script.getScriptDef() instanceof ScriptDefPreInit)
                     {
-                        script.execute();
+                        script.execute(new Object[0]);
                     }
                 }
             }
@@ -81,7 +81,7 @@ public class LoadedMod
                 {
                     if (script.getScriptDef() instanceof ScriptDefInit)
                     {
-                        script.execute();
+                        script.execute(new Object[0]);
                     }
                 }
             }
@@ -98,7 +98,7 @@ public class LoadedMod
                 {
                     if (script.getScriptDef() instanceof ScriptDefPostInit)
                     {
-                        script.execute();
+                        script.execute(new Object[0]);
                     }
                 }
             }

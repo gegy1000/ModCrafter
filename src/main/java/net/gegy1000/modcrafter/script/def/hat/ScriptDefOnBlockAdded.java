@@ -1,7 +1,8 @@
-package net.gegy1000.modcrafter.script;
+package net.gegy1000.modcrafter.script.def.hat;
 
 import net.gegy1000.modcrafter.mod.component.Component;
 import net.gegy1000.modcrafter.mod.component.ComponentDefBlock;
+import net.minecraft.world.World;
 
 public class ScriptDefOnBlockAdded extends ScriptDefHat
 {
@@ -27,5 +28,11 @@ public class ScriptDefOnBlockAdded extends ScriptDefHat
     public boolean isAllowedFor(Component component)
     {
         return component.getComponentDef() instanceof ComponentDefBlock;
+    }
+
+    @Override
+    public Class[] getContextVariables()
+    {
+        return new Class[]{World.class};
     }
 }

@@ -4,6 +4,8 @@ import net.gegy1000.modcrafter.ModCrafterAPI;
 import net.gegy1000.modcrafter.json.JsonScript;
 import net.gegy1000.modcrafter.mod.Mod;
 import net.gegy1000.modcrafter.mod.component.Component;
+import net.gegy1000.modcrafter.script.def.ScriptDef;
+import net.gegy1000.modcrafter.script.def.hat.ScriptDefHat;
 import net.gegy1000.modcrafter.script.parameter.IParameter;
 import net.gegy1000.modcrafter.script.parameter.InputParameter;
 
@@ -43,17 +45,58 @@ public class Script
         this(component, def, parent, true);
     }
 
-    public void execute()
+    public void execute(Object[] contextVariables)
     {
-        def.execute(this);
+        Object[] newContext = correctContextVariables(contextVariables);
+
+        def.execute(this, newContext);
 
         // TODO execute contained
         Script child = getChild();
 
         if (child != null)
         {
-            child.execute();
+            child.execute(contextVariables);
         }
+    }
+
+    public boolean hasCorrectContextVariables(Object[] contextVariables)
+    {
+        Object[] newVars = correctContextVariables(contextVariables);
+
+        for (int i = 0; i < newVars.length; i++)
+        {
+            if (newVars[i] == null)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public Object[] correctContextVariables(Object[] contextVariables)
+    {
+        Class[] required = getScriptDef().getRequiredContextVariables();
+
+        Object[] newContext = new Object[required.length];
+
+        for (Object obj : contextVariables)
+        {
+            int i = 0;
+
+            for (Class clazz : required)
+            {
+                if (clazz.isInstance(obj))
+                {
+                    newContext[i] = obj;
+                }
+
+                i++;
+            }
+        }
+
+        return newContext;
     }
 
     public Script(Component component, Mod mod, Script parent, JsonScript jsonScript)
@@ -62,10 +105,14 @@ public class Script
         this.parent = parent;
 
         if (jsonScript.child != null)
+        {
             this.child = new Script(component, mod, this, jsonScript.child);
+        }
 
         if (jsonScript.contained != null)
+        {
             this.contained = new Script(component, mod, this, jsonScript.contained);
+        }
 
         this.component = component;
         this.name = def.getName();
@@ -248,9 +295,13 @@ public class Script
         for (Object namePart : name)
         {
             if (namePart instanceof IParameter)
+            {
                 displayName += ((IParameter) namePart).getData();
+            }
             else
+            {
                 displayName += namePart;
+            }
 
             displayName += " ";
         }
@@ -276,5 +327,41 @@ public class Script
     public Script getContained()
     {
         return contained;
+    }
+
+    public boolean hasCorrectContextVariables(Script script)
+    {
+        if (getScriptDef() instanceof ScriptDefHat)
+        {
+            int contains = 0;
+
+            Class[] contextVariables = ((ScriptDefHat) getScriptDef()).getContextVariables();
+            Class[] requiredContextVariables = script.getScriptDef().getRequiredContextVariables();
+
+            for (int i = 0; i < contextVariables.length; i++)
+            {
+                for (int j = 0; j < requiredContextVariables.length; j++)
+                {
+                    if (contextVariables[i] == requiredContextVariables[j])
+                    {
+                        contains++;
+                    }
+                }
+            }
+
+            if (contains == requiredContextVariables.length)
+            {
+                return true;
+            }
+        }
+        else
+        {
+            if (getParent() != null)
+            {
+                return getParent().hasCorrectContextVariables(script);
+            }
+        }
+
+        return false;
     }
 }

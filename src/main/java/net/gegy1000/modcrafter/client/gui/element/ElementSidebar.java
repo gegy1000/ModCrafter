@@ -2,7 +2,7 @@ package net.gegy1000.modcrafter.client.gui.element;
 
 import net.gegy1000.modcrafter.ModCrafterAPI;
 import net.gegy1000.modcrafter.client.gui.GuiModCrafterProject;
-import net.gegy1000.modcrafter.script.ScriptDef;
+import net.gegy1000.modcrafter.script.def.ScriptDef;
 import org.lwjgl.opengl.GL11;
 
 import java.util.Map.Entry;

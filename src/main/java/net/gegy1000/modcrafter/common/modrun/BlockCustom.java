@@ -2,7 +2,7 @@ package net.gegy1000.modcrafter.common.modrun;
 
 import net.gegy1000.modcrafter.mod.component.Component;
 import net.gegy1000.modcrafter.script.Script;
-import net.gegy1000.modcrafter.script.ScriptDefOnBlockAdded;
+import net.gegy1000.modcrafter.script.def.hat.ScriptDefOnBlockAdded;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
@@ -35,7 +35,7 @@ public class BlockCustom extends Block
         {
             if (script.getScriptDef() instanceof ScriptDefOnBlockAdded)
             {
-                script.execute();
+                script.execute(new Object[]{world});
             }
         }
     }

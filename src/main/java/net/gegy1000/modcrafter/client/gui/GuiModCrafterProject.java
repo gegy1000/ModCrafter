@@ -12,9 +12,9 @@ import net.gegy1000.modcrafter.mod.Mod;
 import net.gegy1000.modcrafter.mod.ModSaveManager;
 import net.gegy1000.modcrafter.mod.component.Component;
 import net.gegy1000.modcrafter.script.Script;
-import net.gegy1000.modcrafter.script.ScriptDef;
-import net.gegy1000.modcrafter.script.ScriptDefContainer;
-import net.gegy1000.modcrafter.script.ScriptDefHat;
+import net.gegy1000.modcrafter.script.def.ScriptDef;
+import net.gegy1000.modcrafter.script.def.ScriptDefContainer;
+import net.gegy1000.modcrafter.script.def.hat.ScriptDefHat;
 import net.gegy1000.modcrafter.script.parameter.DataType;
 import net.gegy1000.modcrafter.script.parameter.InputParameter;
 import net.minecraft.client.Minecraft;
@@ -299,9 +299,13 @@ public class GuiModCrafterProject extends GuiScreen
             else
             {
                 if (drawScaledLimitedString(mc, object.toString(), x, yPosition + 3, 0xFFFFFF, 0.5F, maxWidth))
+                {
                     x += getScaledStringWidth(object.toString() + " ", 0.5F);
+                }
                 else
+                {
                     break;
+                }
             }
         }
     }
@@ -315,13 +319,19 @@ public class GuiModCrafterProject extends GuiScreen
             for (int i = 0; i < width; i++)
             {
                 if (x + i < maxWidth)
+                {
                     drawTexturedModalRect(x + i, y, u + i, v, 1, height);
+                }
                 else
+                {
                     break;
+                }
             }
         }
         else
+        {
             drawTexturedModalRect(x, y, u, v, width, height);
+        }
     }
 
     private void drawLimitedRect(int x, int y, int sizeX, int sizeY, float r, float g, float b, float a, int maxWidth)
@@ -333,13 +343,19 @@ public class GuiModCrafterProject extends GuiScreen
             for (int i = 0; i < sizeX; i++)
             {
                 if (x + i < maxWidth)
+                {
                     drawRect(x + i, y, 1, sizeY, r, g, b, a);
+                }
                 else
+                {
                     break;
+                }
             }
         }
         else
+        {
             drawRect(x, y, sizeX, sizeY, r, g, b, a);
+        }
     }
 
     private boolean drawScaledLimitedString(Minecraft mc, String text, int x, int y, int color, float scale, int maxWidth)
@@ -434,7 +450,7 @@ public class GuiModCrafterProject extends GuiScreen
 
         for (Script script : selectedComponent.getScriptsAndChildren())
         {
-            if (script != holdingScript && holdingScript.getScriptDef().canAttachTo(script) && (script.getChild() == null || script.getChild() == holdingScript))
+            if (script != holdingScript && holdingScript.getScriptDef().canAttachTo(script) && script.hasCorrectContextVariables(holdingScript) && (script.getChild() == null || script.getChild() == holdingScript))
             {
                 container = false;
 
@@ -482,7 +498,9 @@ public class GuiModCrafterProject extends GuiScreen
         }
 
         if (y < 0)
+        {
             y = 0;
+        }
 
         moveChild(holdingScript, x, y);
 

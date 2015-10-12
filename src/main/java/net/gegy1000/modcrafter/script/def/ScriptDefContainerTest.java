@@ -1,6 +1,7 @@
-package net.gegy1000.modcrafter.script;
+package net.gegy1000.modcrafter.script.def;
 
 import net.gegy1000.modcrafter.mod.component.Component;
+import net.gegy1000.modcrafter.script.Script;
 
 public class ScriptDefContainerTest extends ScriptDefContainer
 {
@@ -29,7 +30,13 @@ public class ScriptDefContainerTest extends ScriptDefContainer
     }
 
     @Override
-    public void execute(Script script)
+    public Class[] getRequiredContextVariables()
+    {
+        return new Class[0];
+    }
+
+    @Override
+    public void execute(Script script, Object[] contextVariables)
     {
     }
 }

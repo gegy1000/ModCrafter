@@ -6,7 +6,7 @@ import net.gegy1000.modcrafter.json.JsonComponent;
 import net.gegy1000.modcrafter.json.JsonScript;
 import net.gegy1000.modcrafter.mod.Mod;
 import net.gegy1000.modcrafter.script.Script;
-import net.gegy1000.modcrafter.script.ScriptDefHat;
+import net.gegy1000.modcrafter.script.def.hat.ScriptDefHat;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.ArrayList;

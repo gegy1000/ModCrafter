@@ -1,7 +1,7 @@
 package net.gegy1000.modcrafter;
 
 import net.gegy1000.modcrafter.mod.component.ComponentDef;
-import net.gegy1000.modcrafter.script.ScriptDef;
+import net.gegy1000.modcrafter.script.def.ScriptDef;
 
 import java.util.HashMap;
 import java.util.Map;

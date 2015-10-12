@@ -1,11 +1,12 @@
-package net.gegy1000.modcrafter.script;
+package net.gegy1000.modcrafter.script.def;
 
 import net.gegy1000.modcrafter.mod.component.Component;
+import net.gegy1000.modcrafter.script.Script;
 import net.gegy1000.modcrafter.script.parameter.IParameter;
 
 public abstract class ScriptDef
 {
-    public abstract void execute(Script script);
+    public abstract void execute(Script script, Object[] contextVariables);
 
     public abstract String getId();
 
@@ -16,6 +17,8 @@ public abstract class ScriptDef
     public abstract boolean isAllowedFor(Component component);
 
     public abstract int getHeight(Script script);
+
+    public abstract Class[] getRequiredContextVariables();
 
     public boolean canAttachTo(Script script)
     {

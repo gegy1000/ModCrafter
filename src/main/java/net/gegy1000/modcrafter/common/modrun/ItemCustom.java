@@ -2,7 +2,7 @@ package net.gegy1000.modcrafter.common.modrun;
 
 import net.gegy1000.modcrafter.mod.component.Component;
 import net.gegy1000.modcrafter.script.Script;
-import net.gegy1000.modcrafter.script.ScriptDefOnItemRightClick;
+import net.gegy1000.modcrafter.script.def.hat.ScriptDefOnItemRightClick;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -29,7 +29,6 @@ public class ItemCustom extends Item
         {
             if (script.getScriptDef() instanceof ScriptDefOnItemRightClick)
             {
-                script.execute();
             }
         }
 
