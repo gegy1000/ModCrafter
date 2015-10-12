@@ -29,10 +29,14 @@ public class JsonScript
         this.defId = script.getScriptDef().getId();
 
         if (script.getChild() != null)
+        {
             this.child = new JsonScript(script.getChild());
+        }
 
         if (script.getContained() != null)
+        {
             this.contained = new JsonScript(script.getContained());
+        }
 
         this.x = script.getX();
         this.y = script.getY();

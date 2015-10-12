@@ -10,7 +10,12 @@ import net.gegy1000.modcrafter.mod.component.Component;
 import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;

@@ -62,7 +62,7 @@ public class GuiSlider extends Gui
      */
     protected void mouseDragged(Minecraft mc, int mouseX, int mouseY)
     {
-        if(mouseY > yPosition - 4 && mouseY < yPosition + height + 4 && mouseX > xPosition && dragging)
+        if (mouseY > yPosition - 4 && mouseY < yPosition + height + 4 && mouseX > xPosition && dragging)
         {
             this.slide = Math.min(Math.max(min, (mouseX - xPosition) - 65), max);
         }

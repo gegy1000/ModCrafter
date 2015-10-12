@@ -29,6 +29,7 @@ public class ItemCustom extends Item
         {
             if (script.getScriptDef() instanceof ScriptDefOnItemRightClick)
             {
+                script.execute(new Object[]{world, player});
             }
         }
 

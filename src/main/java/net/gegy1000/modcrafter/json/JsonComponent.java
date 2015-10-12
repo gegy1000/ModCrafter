@@ -60,7 +60,7 @@ public class JsonComponent
             {
                 this.value = "tab:" + ((EnumCreativeTab) object).ordinal();
             }
-            else if(object instanceof Integer)
+            else if (object instanceof Integer)
             {
                 this.value = "i:" + (int) object;
             }
@@ -80,7 +80,7 @@ public class JsonComponent
                 {
                     object = EnumCreativeTab.values()[Integer.parseInt(value.split("tab:")[1])];
                 }
-                else if(value.startsWith("i:"))
+                else if (value.startsWith("i:"))
                 {
                     object = Integer.parseInt(value.split("i:")[1]);
                 }

@@ -64,7 +64,7 @@ public class GuiDialogueModifyProperties extends GuiDialogueBox
                     names.add(propertyType.getKey());
                 }
             }
-            else if(propertyType.getKey().equalsIgnoreCase("Texture") && propertyType.getValue() == String.class)
+            else if (propertyType.getKey().equalsIgnoreCase("Texture") && propertyType.getValue() == String.class)
             {
                 List<String> selections = new ArrayList<String>();
 

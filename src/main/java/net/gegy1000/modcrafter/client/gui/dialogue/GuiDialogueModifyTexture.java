@@ -4,7 +4,6 @@ import net.gegy1000.modcrafter.client.gui.GuiDropdown;
 import net.gegy1000.modcrafter.client.gui.GuiModCrafterButton;
 import net.gegy1000.modcrafter.client.gui.GuiModCrafterProject;
 import net.gegy1000.modcrafter.client.gui.GuiSlider;
-import net.ilexiconn.llibrary.common.color.ColorHelper;
 import net.minecraft.client.gui.GuiButton;
 
 public class GuiDialogueModifyTexture extends GuiDialogueBox
@@ -31,9 +30,12 @@ public class GuiDialogueModifyTexture extends GuiDialogueBox
         this.buttonList.add(new GuiModCrafterButton(1, width / 2 - 35, height / 2 + 85, 50, 20, "Cancel"));
         this.buttonList.add(new GuiModCrafterButton(2, width / 2 + 20, height / 2 + 85, 50, 20, "Reset"));
 
-        redSlider.xPosition = width / 2 - 150; redSlider.yPosition = height / 2 - 90;
-        greenSlider.xPosition = width / 2 - 150; greenSlider.yPosition = height / 2 - 75;
-        blueSlider.xPosition = width / 2 - 150; blueSlider.yPosition = height / 2 - 60;
+        redSlider.xPosition = width / 2 - 150;
+        redSlider.yPosition = height / 2 - 90;
+        greenSlider.xPosition = width / 2 - 150;
+        greenSlider.yPosition = height / 2 - 75;
+        blueSlider.xPosition = width / 2 - 150;
+        blueSlider.yPosition = height / 2 - 60;
 
         this.dialogueHeight = 225;
 
@@ -53,7 +55,7 @@ public class GuiDialogueModifyTexture extends GuiDialogueBox
             {
                 Object property = project.selectedComponent.getProperty("X;" + x + "Y;" + y);
 
-                if(property == null)
+                if (property == null)
                 {
                     property = 0xFFFFFF;
                 }
@@ -78,11 +80,11 @@ public class GuiDialogueModifyTexture extends GuiDialogueBox
 
             closeDialogue();
         }
-        else if(button.id == 1)
+        else if (button.id == 1)
         {
             closeDialogue();
         }
-        else if(button.id == 2)
+        else if (button.id == 2)
         {
             for (int x = 0; x < 16; x++)
             {
@@ -119,7 +121,7 @@ public class GuiDialogueModifyTexture extends GuiDialogueBox
                 int drawX = x * 6 + (width / 2) - 10;
                 int drawY = y * 6 + (height / 2) - 35;
 
-                if(mouseX > drawX && mouseX < drawX + 6 && mouseY > drawY && mouseY < drawY + 6)
+                if (mouseX > drawX && mouseX < drawX + 6 && mouseY > drawY && mouseY < drawY + 6)
                 {
                     int red = redSlider.slide * 2;
                     int green = greenSlider.slide * 2;
